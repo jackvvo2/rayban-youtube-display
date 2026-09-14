@@ -4,7 +4,7 @@
   var CONFIG = {
     appName: "Meta Display Playlist",
     storageKey: "rayban-youtube-display:playlist:v1",
-    playlistId: "PLG4ASdiTQRwQ&si=Kxg73gP5vH0K9Muc",
+    playlistId: "PLG4ASdiTQRwQ",
     playlistUrl: "playlist.json",
     youtubeBase: "https://www.youtube.com"
   };
