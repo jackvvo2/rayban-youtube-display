@@ -1,29 +1,29 @@
 {
-  "playlistId": "PLG4ASdiTQRwQ&si=Kxg73gP5vH0K9Muc",
+  "playlistId": "PL7bU9mtR4VuCsaFjk5VBO8gWRd7pkzqrO",
   "title": "Meta Display App",
   "channel": "Chris Guitarte",
-  "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ&si=Kxg73gP5vH0K9Muc",
-  "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ&si=Kxg73gP5vH0K9Muc",
+  "sourceUrl": "https://youtube.com/playlist?list=PL7bU9mtR4VuCsaFjk5VBO8gWRd7pkzqrO",
+  "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL7bU9mtR4VuCsaFjk5VBO8gWRd7pkzqrO",
   "published": "2026-05-15T05:24:49+00:00",
-  "generatedAt": "2026-05-15T05:35:18.803Z",
+  "generatedAt": "2026-09-14T23:22:45.126Z",
   "videos": [
     {
       "id": "igO8iyca2_g",
       "title": "Running an AI-native engineering org",
       "author": "Claude",
       "published": "2026-05-08T18:50:11+00:00",
-      "updated": "2026-05-12T10:32:56+00:00",
+      "updated": "2026-08-27T00:38:07+00:00",
       "thumbnail": "https://i2.ytimg.com/vi/igO8iyca2_g/hqdefault.jpg",
       "description": "When agentic coding goes from individual tool to org-wide default, the tool isn't the hard part...your processes are. Fiona Fung, Director of Engineering for Claude Code, walks through what broke at Anthropic (review, o..."
     },
     {
       "id": "So_rId3PUpY",
-      "title": "Fellow Just Broke Home Espresso",
+      "title": "Fellow Just Broke Home Espresso: The Espresso Series 1",
       "author": "Daddy Got Coffee",
       "published": "2026-05-02T10:00:42+00:00",
-      "updated": "2026-05-09T03:05:55+00:00",
+      "updated": "2026-07-27T14:46:12+00:00",
       "thumbnail": "https://i4.ytimg.com/vi/So_rId3PUpY/hqdefault.jpg",
-      "description": "Insanity with the Fellow Series 1, especially paired with Third Wave Water! Get 10% off a one time order at: https://thirdwavewater.com/daddygotcoffee Fellow Series 1: https://geni.us/FellowSeries1 Six weeks with the Fe..."
+      "description": "Insanity with the Fellow Espresso Series 1, especially paired with Third Wave Water! Get 10% off a one time order at: https://thirdwavewater.com/daddygotcoffee Fellow Series 1: https://geni.us/FellowSeries1 Six weeks wi..."
     }
   ]
 }
