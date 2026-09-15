@@ -176,6 +176,14 @@ h2 {
   box-shadow: 0 0 14px rgba(57, 217, 138, 0.8);
 }
 
+.logout-button {
+  margin-left: auto;
+  min-width: auto;
+  padding: 6px 10px;
+  font-size: 13px;
+  min-height: 32px;
+}
+
 .action-list {
   position: relative;
   display: grid;
@@ -271,6 +279,32 @@ h2 {
   min-height: 64px;
 }
 
+.primary-button {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px;
+  border: 1px solid rgba(255, 90, 79, 0.72);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #251215, #402025);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease,
+    border-color 200ms ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  opacity: 1;
+  border-color: rgba(255, 90, 79, 0.9);
+}
+
+.primary-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 .primary {
   border-color: rgba(255, 90, 79, 0.72);
   background: linear-gradient(135deg, #251215, #402025);
@@ -326,6 +360,61 @@ h2 {
 
 .focusable:active {
   transform: scale(0.96);
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 500px;
+  padding: 24px;
+}
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-panel h2 {
+  max-width: none;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.login-panel p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.auth-status {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.auth-status p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.auth-status p.error {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.auth-status p.info {
+  color: var(--text-soft);
 }
 
 .footer-note {
@@ -472,7 +561,8 @@ h2 {
   .icon-button,
   .compact-button,
   .content,
-  .toast {
+  .toast,
+  .primary-button {
     transition: none;
   }
 }
