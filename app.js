@@ -117,6 +117,15 @@
       case "toggle-controls":
         setControlsVisible(!state.controlsVisible);
         break;
+      case "previous-chapter":
+        handlePreviousChapter();
+        break;
+      case "next-chapter":
+        handleNextChapter();
+        break;
+      case "last-chapter":
+        handleLastChapter();
+        break;
       case "home":
         showScreen("home-screen", true);
         break;
@@ -125,6 +134,39 @@
         break;
       default:
         showToast("Action unavailable");
+    }
+  }
+
+  function handleNextChapter() {
+    if (!window.ChapterManager) {
+      showToast("Chapter support not available");
+      return;
+    }
+    var chapter = window.ChapterManager.getNextChapter();
+    if (chapter) {
+      window.ChapterManager.seekToChapter(chapter);
+    }
+  }
+
+  function handlePreviousChapter() {
+    if (!window.ChapterManager) {
+      showToast("Chapter support not available");
+      return;
+    }
+    var chapter = window.ChapterManager.getPreviousChapter();
+    if (chapter) {
+      window.ChapterManager.seekToChapter(chapter);
+    }
+  }
+
+  function handleLastChapter() {
+    if (!window.ChapterManager) {
+      showToast("Chapter support not available");
+      return;
+    }
+    var chapter = window.ChapterManager.getLastChapter();
+    if (chapter) {
+      window.ChapterManager.seekToChapter(chapter);
     }
   }
 
@@ -290,6 +332,13 @@
       state.playerReady = true;
       playerStatus.textContent = "Loading selected video...";
       state.player.loadVideoById(videoId);
+      // Emit event for chapter manager to initialize
+      if (window.ChapterManager) {
+        var event = new CustomEvent("playerReady", {
+          detail: { player: state.player, videoId: videoId }
+        });
+        document.dispatchEvent(event);
+      }
       return;
     }
 
@@ -362,6 +411,13 @@
       event.target.playVideo();
     } catch (error) {
       playerStatus.textContent = "Ready. Press Play / Pause to start.";
+    }
+    // Emit event for chapter manager to initialize
+    if (window.ChapterManager) {
+      var customEvent = new CustomEvent("playerReady", {
+        detail: { player: event.target, videoId: state.activeVideoId }
+      });
+      document.dispatchEvent(customEvent);
     }
     focusFirst();
   }
