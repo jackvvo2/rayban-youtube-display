@@ -12,7 +12,31 @@
   </head>
   <body>
     <main class="app-root" aria-live="polite">
-      <section id="home-screen" class="screen active" data-screen="home">
+      <section id="login-screen" class="screen active" data-screen="login">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Meta Display</p>
+            <h1>YouTube Auth</h1>
+          </div>
+          <div class="yt-mark" aria-hidden="true">YT</div>
+        </header>
+
+        <div class="login-container">
+          <div class="login-panel">
+            <h2>Sign in to YouTube</h2>
+            <p>Login with your YouTube account to access the playlist.</p>
+            <button id="youtube-login-btn" class="focusable primary-button" data-action="youtube-login">
+              Sign in with YouTube
+            </button>
+          </div>
+
+          <div id="auth-status" class="auth-status" style="display: none;">
+            <p id="auth-message"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="home-screen" class="screen" data-screen="home">
         <header class="topbar">
           <div>
             <p class="eyebrow">Meta Display</p>
@@ -24,6 +48,7 @@
         <div class="session-panel">
           <span class="session-dot" aria-hidden="true"></span>
           <span id="playlist-summary">Loading playlist...</span>
+          <button id="logout-btn" class="focusable compact-button logout-button" data-action="logout" title="Logout">Logout</button>
         </div>
 
         <div class="playlist-toolbar">
@@ -74,6 +99,7 @@
     </main>
 
     <noscript>This app needs JavaScript to launch the YouTube web player.</noscript>
+    <script src="auth.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>
