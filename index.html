@@ -84,14 +84,26 @@
             <span class="content">Play / Pause</span>
           </button>
           <button class="focusable control-button" data-action="previous-video">
-            <span class="content">Previous</span>
+            <span class="content">Previous Video</span>
           </button>
           <button class="focusable control-button" data-action="next-video">
-            <span class="content">Next</span>
+            <span class="content">Next Video</span>
           </button>
           <button class="focusable control-button" data-action="refresh-playlist">
             <span class="content">Refresh List</span>
           </button>
+          <button class="focusable control-button" data-action="previous-chapter">
+            <span class="content">Prev Chapter</span>
+          </button>
+          <button class="focusable control-button" data-action="next-chapter">
+            <span class="content">Next Chapter</span>
+          </button>
+          <button class="focusable control-button" data-action="last-chapter">
+            <span class="content">Last Chapter</span>
+          </button>
+          <div class="chapter-info">
+            <span id="chapter-display" class="chapter-label">No chapters</span>
+          </div>
         </div>
       </section>
 
@@ -100,6 +112,7 @@
 
     <noscript>This app needs JavaScript to launch the YouTube web player.</noscript>
     <script src="auth.js" defer></script>
+    <script src="chapters.js" defer></script>
     <script src="app.js" defer></script>
   </body>
 </html>
