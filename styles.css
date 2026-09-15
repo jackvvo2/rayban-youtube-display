@@ -523,16 +523,17 @@ h2 {
   border: 1px solid var(--edge);
   border-radius: 8px;
   background: var(--bg);
-  max-height: 320px;
-  display: grid; /* RESTORE GRID LAYOUT */
+  max-height: 300px;
+  display: grid !important; /* Force grid layout when drawer is open */
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  overflow-y: auto; /* ALLOW SCROLLING WITHIN 600x600 VIEWPORT */
+  overflow-y: auto;
 }
 
 .controls-drawer.is-hidden {
   display: none !important;
 }
+
 
 .controls-drawer .control-grid {
   flex: 1;
