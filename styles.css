@@ -240,6 +240,7 @@ h2 {
   padding: 10px;
   border-radius: 8px;
   text-align: center;
+  cursor: pointer;
 }
 
 .icon-button {
@@ -508,6 +509,8 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 .controls-drawer {
@@ -520,14 +523,40 @@ h2 {
   border: 1px solid var(--edge);
   border-radius: 8px;
   background: var(--bg);
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
 }
 
 .controls-drawer.is-hidden {
   display: none;
 }
 
+.controls-drawer .control-grid {
+  flex: 1;
+  overflow-y: auto;
+}
+
 .controls-drawer .control-button {
-  min-height: 72px;
+  min-height: 60px;
+  font-size: 13px;
+}
+
+.chapter-info {
+  grid-column: 1 / -1;
+  min-height: 50px;
+  background: var(--surface-soft);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapter-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .toast {
