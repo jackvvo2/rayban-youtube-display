@@ -518,18 +518,20 @@ h2 {
   right: 8px;
   bottom: 8px;
   left: 8px;
-  z-index: 5;
+  z-index: 99;
   padding: 8px;
   border: 1px solid var(--edge);
   border-radius: 8px;
   background: var(--bg);
   max-height: 320px;
-  display: flex;
-  flex-direction: column;
+  display: grid; /* RESTORE GRID LAYOUT */
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  overflow-y: auto; /* ALLOW SCROLLING WITHIN 600x600 VIEWPORT */
 }
 
 .controls-drawer.is-hidden {
-  display: none;
+  display: none !important;
 }
 
 .controls-drawer .control-grid {
