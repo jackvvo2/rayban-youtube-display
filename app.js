@@ -544,17 +544,19 @@
     state.currentScreen = previous;
     window.setTimeout(focusFirst, 0);
   }
-
-  function activeFocusables() {
+  
+    function activeFocusables() {
     var screen = document.getElementById(state.currentScreen);
     if (!screen) {
       return [];
     }
     return Array.prototype.slice.call(screen.querySelectorAll(".focusable:not([disabled])"))
       .filter(function (element) {
-        return element.offsetParent !== null;
+        // Fix: Use getClientRects() instead of offsetParent to correctly detect visible children inside absolute overlays
+        return Boolean(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
       });
   }
+
 
   function focusFirst() {
     var elements = activeFocusables();
