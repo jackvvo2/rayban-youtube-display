@@ -66,6 +66,66 @@ function stripText(value, max) {
   return cleaned;
 }
 
+function timestampToSeconds(stamp) {
+  var parts = String(stamp || "").split(":").map(function (p) {
+    return parseInt(p, 10);
+  });
+  if (parts.some(function (n) { return isNaN(n) || n < 0; })) {
+    return null;
+  }
+  if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  }
+  if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  }
+  return null;
+}
+
+function parseChapters(description) {
+  var text = String(description || "").replace(/\r\n/g, "\n");
+  var lines = text.split("\n");
+  var chapters = [];
+  var stampRe = /^\s*(\d{1,2}:\d{2}(?::\d{2})?)\s*[-ââ:.]?\s*(.*)$/;
+
+  for (var i = 0; i < lines.length; i++) {
+    var match = lines[i].match(stampRe);
+    if (!match) {
+      continue;
+    }
+    var seconds = timestampToSeconds(match[1]);
+    if (seconds === null) {
+      continue;
+    }
+    var title = stripText(match[2], 80) || ("Chapter " + (chapters.length + 1));
+    chapters.push({
+      start: seconds,
+      timestamp: match[1],
+      title: title
+    });
+  }
+
+  chapters.sort(function (a, b) {
+    return a.start - b.start;
+  });
+
+  var unique = [];
+  var seen = {};
+  for (var j = 0; j < chapters.length; j++) {
+    if (seen[chapters[j].start]) {
+      continue;
+    }
+    seen[chapters[j].start] = true;
+    unique.push(chapters[j]);
+  }
+
+  // Need at least two timestamps to treat them as real chapters
+  if (unique.length < 2) {
+    return [];
+  }
+  return unique;
+}
+
 function parseFeed(xml) {
   var title = textBetween(xml, "<title>", "</title>") || "Meta Display App";
   var authorBlock = textBetween(xml, "<author>", "</author>");
@@ -75,15 +135,34 @@ function parseFeed(xml) {
   var videos = entries.map(function (entry) {
     var mediaGroup = textBetween(entry, "<media:group>", "</media:group>");
     var thumbnailMatch = mediaGroup.match(/<media:thumbnail\s+[^>]*>/);
-    return {
+    var rawDescription = textBetween(mediaGroup, "<media:description>", "</media:description>");
+    var chapters = parseChapters(rawDescription);
+    var lastChapter = chapters.length ? chapters[chapters.length - 1] : null;
+    var video = {
       id: textBetween(entry, "<yt:videoId>", "</yt:videoId>"),
       title: stripText(textBetween(entry, "<title>", "</title>"), 140),
       author: stripText(textBetween(textBetween(entry, "<author>", "</author>"), "<name>", "</name>"), 80),
       published: textBetween(entry, "<published>", "</published>"),
       updated: textBetween(entry, "<updated>", "</updated>"),
       thumbnail: thumbnailMatch ? attr(thumbnailMatch[0], "url") : "",
-      description: stripText(textBetween(mediaGroup, "<media:description>", "</media:description>"), 220)
+      description: stripText(rawDescription, 220)
     };
+
+    if (lastChapter && lastChapter.start > 0) {
+      video.chapters = chapters;
+      video.lastChapter = {
+        start: lastChapter.start,
+        timestamp: lastChapter.timestamp,
+        title: lastChapter.title
+      };
+      // YouTube watch URL / embed start time
+      video.startAt = lastChapter.start;
+      video.watchUrl = "https://www.youtube.com/watch?v=" + video.id + "&t=" + lastChapter.start + "s";
+    } else {
+      video.watchUrl = "https://www.youtube.com/watch?v=" + video.id;
+    }
+
+    return video;
   }).filter(function (video) {
     return /^[A-Za-z0-9_-]{11}$/.test(video.id);
   });
@@ -126,7 +205,8 @@ fetchText(FEED_URL)
       return;
     }
     fs.writeFileSync(OUT, JSON.stringify(data, null, 2) + "\n");
-    console.log("Wrote " + data.videos.length + " videos to " + OUT);
+    var withChapters = data.videos.filter(function (v) { return v.startAt; }).length;
+    console.log("Wrote " + data.videos.length + " videos to " + OUT + " (" + withChapters + " start at last chapter)");
   })
   .catch(function (error) {
     console.error(error.message);
