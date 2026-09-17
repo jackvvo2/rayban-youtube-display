@@ -86,6 +86,7 @@ function parseChapters(description) {
   var text = String(description || "").replace(/\r\n/g, "\n");
   var lines = text.split("\n");
   var chapters = [];
+  // Keep original stamp patterns; also accept common dash encodings
   var stampRe = /^\s*(\d{1,2}:\d{2}(?::\d{2})?)\s*[-ââ:.]?\s*(.*)$/;
 
   for (var i = 0; i < lines.length; i++) {
@@ -126,6 +127,15 @@ function parseChapters(description) {
   return unique;
 }
 
+// Embed player ignores watch?v=&t=. Use /embed/ID?start=SECONDS.
+function watchUrl(videoId, startSeconds) {
+  var url = "https://www.youtube.com/embed/" + videoId;
+  if (startSeconds > 0) {
+    url += "?start=" + startSeconds;
+  }
+  return url;
+}
+
 function parseFeed(xml) {
   var title = textBetween(xml, "<title>", "</title>") || "Meta Display App";
   var authorBlock = textBetween(xml, "<author>", "</author>");
@@ -155,11 +165,10 @@ function parseFeed(xml) {
         timestamp: lastChapter.timestamp,
         title: lastChapter.title
       };
-      // YouTube watch URL / embed start time
       video.startAt = lastChapter.start;
-      video.watchUrl = "https://www.youtube.com/watch?v=" + video.id + "&t=" + lastChapter.start + "s";
+      video.watchUrl = watchUrl(video.id, lastChapter.start);
     } else {
-      video.watchUrl = "https://www.youtube.com/watch?v=" + video.id;
+      video.watchUrl = watchUrl(video.id, 0);
     }
 
     return video;
