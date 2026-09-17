@@ -4,10 +4,10 @@
   var chapterState = {
     chapters: [],
     currentChapterIndex: -1,
-    videoId: null
+    videoId: null,
+    tickStarted: false
   };
 
-  // Make chapter functions available globally
   window.ChapterManager = {
     initialize: initializeChapters,
     parseChapters: parseChapters,
@@ -19,36 +19,51 @@
     updateCurrentChapter: updateCurrentChapter
   };
 
-  // Listen for player ready event
   document.addEventListener("playerReady", function (event) {
-    if (event.player) {
-      initializeChapters(event.player, event.videoId);
+    var detail = event.detail || {};
+    var player = detail.player || event.player;
+    var videoId = detail.videoId || event.videoId;
+    var video = detail.video || null;
+    if (player) {
+      initializeChapters(player, videoId, video);
     }
   });
 
-  function initializeChapters(player, videoId) {
+  function initializeChapters(player, videoId, video) {
     chapterState.videoId = videoId;
     chapterState.player = player;
     chapterState.currentChapterIndex = -1;
+    chapterState.chapters = [];
 
-    // Try to fetch video description to parse chapters
-    if (videoId) {
+    if (video && Array.isArray(video.chapters) && video.chapters.length) {
+      applyPlaylistChapters(video.chapters);
+    } else if (videoId) {
       fetchVideoDescription(videoId);
     }
 
-    // Update current chapter as video plays
-    if (player && typeof player.getCurrentTime === "function") {
+    if (!chapterState.tickStarted && player && typeof player.getCurrentTime === "function") {
+      chapterState.tickStarted = true;
       setInterval(updateCurrentChapter, 1000);
     }
   }
 
+  function applyPlaylistChapters(chapters) {
+    chapterState.chapters = chapters.map(function (chapter, index) {
+      return {
+        title: chapter.title || ("Chapter " + (index + 1)),
+        startTime: Number(chapter.start) || 0,
+        index: index
+      };
+    });
+    if (chapterState.chapters.length) {
+      showChapterMessage("Found " + chapterState.chapters.length + " chapters");
+    }
+  }
+
   function fetchVideoDescription(videoId) {
-    // Note: This requires YouTube Data API with proper authentication
-    // For now, we'll parse chapters from common patterns
     var token = window.YouTubeAuth ? window.YouTubeAuth.getToken() : null;
 
     if (!token) {
-      showChapterMessage("No YouTube auth for chapter data");
       return;
     }
 
@@ -65,9 +80,7 @@
           parseChaptersFromDescription(description);
         }
       })
-      .catch(function (error) {
-        // Silently fail - chapters are optional
-      });
+      .catch(function () {});
   }
 
   function parseChaptersFromDescription(description) {
@@ -78,30 +91,21 @@
     chapterState.chapters = [];
     var lines = description.split("\n");
 
-    // Common chapter patterns: "0:00 Chapter Name", "00:00:00 Chapter Name", etc.
-    var chapterRegex = /^(\d{1,2}):(\d{2})(?::(\d{2}))?\s+(.+)$/gm;
-    var match;
-
     lines.forEach(function (line) {
       var timeMatch = /^(\d{1,2}):(\d{2})(?::(\d{2}))?\s+(.+)$/.exec(line.trim());
       if (timeMatch) {
         var hours = parseInt(timeMatch[1], 10);
         var minutes = parseInt(timeMatch[2], 10);
         var seconds = timeMatch[3] ? parseInt(timeMatch[3], 10) : 0;
-
-        // Handle both HH:MM:SS and MM:SS formats
         var totalSeconds;
-        if (hours > 59) {
-          // Likely MM:SS format where first number is minutes
+        if (timeMatch[3] === undefined) {
           totalSeconds = hours * 60 + minutes;
         } else {
-          // HH:MM:SS format
           totalSeconds = hours * 3600 + minutes * 60 + seconds;
         }
 
-        var title = timeMatch[4].trim();
         chapterState.chapters.push({
-          title: title,
+          title: timeMatch[4].trim(),
           startTime: totalSeconds,
           index: chapterState.chapters.length
         });
