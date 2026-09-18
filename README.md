@@ -23,19 +23,17 @@ Playlist metadata is generated into same-origin playlist.json from YouTube's pub
 
 To refresh the checked-in playlist JSON:
 
-~~~
-bash
+```bash
 npm run refresh-playlist
-~~~
+```
 
 A GitHub Actions workflow exists for manual refreshes only. The scheduled 30-minute refresh is disabled to avoid spending Actions minutes.
 
 ## Run Locally
 
-~~~
-bash
+```bash
 npm start
-~~~
+```
 
 Open http://localhost:3000 and use arrow keys plus Enter to simulate the glasses D-pad.
 
@@ -45,10 +43,9 @@ Meta Ray-Ban Display web apps need a public HTTPS URL. Add the deployed URL in t
 
 Public test URL:
 
-~~~
-text
+```text
 https://chrisclawguitarte.github.io/rayban-youtube-display/
-~~~
+```
 
 The app uses:
 
