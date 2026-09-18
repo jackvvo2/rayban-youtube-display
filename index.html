@@ -28,14 +28,17 @@
 
         <div class="playlist-toolbar">
           <span id="playlist-updated">Waiting for playlist data</span>
-          <button class="focusable compact-button" data-action="refresh-playlist">Refresh</button>
+          <div class="playlist-toolbar-actions">
+            <button id="resume-player" class="focusable compact-button primary" data-action="resume-player">Open player</button>
+            <button class="focusable compact-button" data-action="refresh-playlist">Refresh</button>
+          </div>
         </div>
 
         <nav class="action-list playlist-list" id="playlist-list" aria-label="Playlist videos">
           <div class="empty-card">Loading videos...</div>
         </nav>
 
-        <p class="footer-note">Select a video. The player stays inside this app.</p>
+        <p class="footer-note">Select a video. Use Open player after Back to reopen the frame.</p>
       </section>
 
       <section id="player-screen" class="screen" data-screen="player">
