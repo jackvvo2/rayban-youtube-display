@@ -137,9 +137,7 @@ function parseChapters(description) {
   var unique = dedupeChapters(chapters);
   if (unique.length) return unique;
 
-  var inlineRe = /(
-?)/g;
-  inlineRe = /(\\d{1,2}:\\d{2}(?::\\d{2})?)/g;
+  var inlineRe = /(\\d{1,2}:\\d{2}(?::\\d{2})?)/g;
   var stamps = [];
   var found;
   var stampRe = /(\d{1,2}:\d{2}(?::\d{2})?)/g;
