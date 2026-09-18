@@ -7,6 +7,7 @@
       return;
     }
     event.preventDefault();
+    event.stopImmediatePropagation();
     var card = document.querySelector(".video-card.primary") || document.querySelector(".video-card[data-action='play-index']");
     if (!card) {
       var toast = document.getElementById("toast");
@@ -20,5 +21,5 @@
       return;
     }
     card.click();
-  });
+  }, true);
 })();
