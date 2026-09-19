@@ -1,12 +1,13 @@
 (function () {
   "use strict";
 
-  function visibleScreen() {
-    return document.querySelector(".screen.active") || document.getElementById("player-screen");
+  function playerScreenActive() {
+    var screen = document.getElementById("player-screen");
+    return Boolean(screen && screen.classList.contains("active"));
   }
 
   function focusables() {
-    var screen = visibleScreen();
+    var screen = document.getElementById("player-screen");
     if (!screen) {
       return [];
     }
@@ -14,8 +15,7 @@
       if (el.disabled) {
         return false;
       }
-      var parent = el.closest(".is-hidden");
-      if (parent) {
+      if (el.closest(".is-hidden")) {
         return false;
       }
       var style = window.getComputedStyle(el);
@@ -35,10 +35,16 @@
     } catch (error) {
       el.focus();
     }
+    if (typeof el.scrollIntoView === "function") {
+      el.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
   }
 
   document.addEventListener("keydown", function (event) {
     if (event.key.indexOf("Arrow") !== 0) {
+      return;
+    }
+    if (!playerScreenActive()) {
       return;
     }
     var list = focusables();
@@ -47,19 +53,18 @@
     }
     var current = document.activeElement;
     var index = list.indexOf(current);
-    if (index === -1) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      focusEl(list[0]);
-      return;
-    }
     var backwards = event.key === "ArrowLeft" || event.key === "ArrowUp";
-    var next = backwards ? index - 1 : index + 1;
-    if (next < 0) {
-      next = list.length - 1;
-    }
-    if (next >= list.length) {
+    var next;
+    if (index === -1) {
       next = 0;
+    } else {
+      next = backwards ? index - 1 : index + 1;
+      if (next < 0) {
+        next = list.length - 1;
+      }
+      if (next >= list.length) {
+        next = 0;
+      }
     }
     event.preventDefault();
     event.stopImmediatePropagation();
