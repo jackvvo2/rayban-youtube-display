@@ -1,4 +1,4 @@
-var CACHE = "rayban-youtube-display-v7.7";
+var CACHE = "rayban-youtube-display-v7.8";
 var URLS = [
   "./",
   "./index.html",
@@ -6,10 +6,17 @@ var URLS = [
   "./app.js",
   "./chapters.js",
   "./resume-player.js",
+  "./version-label.js",
   "./playlist.json",
   "./manifest.webmanifest",
   "./favicon.png"
 ];
+
+function postVersion(client) {
+  if (client && typeof client.postMessage === "function") {
+    client.postMessage({ type: "APP_VERSION", cache: CACHE });
+  }
+}
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
@@ -32,8 +39,26 @@ self.addEventListener("activate", function (event) {
       }));
     }).then(function () {
       return self.clients.claim();
+    }).then(function () {
+      return self.clients.matchAll({ type: "window" });
+    }).then(function (clients) {
+      clients.forEach(postVersion);
     })
   );
+});
+
+self.addEventListener("message", function (event) {
+  if (!event.data || event.data.type !== "GET_VERSION") {
+    return;
+  }
+  var payload = { type: "APP_VERSION", cache: CACHE };
+  if (event.ports && event.ports[0]) {
+    event.ports[0].postMessage(payload);
+    return;
+  }
+  if (event.source) {
+    event.source.postMessage(payload);
+  }
 });
 
 self.addEventListener("fetch", function (event) {
