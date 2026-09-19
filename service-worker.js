@@ -1,4 +1,4 @@
-var CACHE = "rayban-youtube-display-v8.4";
+var CACHE = "rayban-youtube-display-v8.5";
 var URLS = [
   "./",
   "./index.html",
