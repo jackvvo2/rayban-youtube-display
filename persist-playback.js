@@ -8,6 +8,7 @@
   var pollTimer = 0;
   var seekTimer = 0;
   var seekTries = 0;
+  var skipResume = false;
 
   function readStore() {
     try {
@@ -63,7 +64,7 @@
   }
 
   function persist() {
-    if (!videoId) {
+    if (!videoId || skipResume) {
       return;
     }
     var time = currentTime();
@@ -82,13 +83,21 @@
     writeStore(data);
   }
 
+  function clearSavedTime(id) {
+    var data = readStore();
+    if (data.times) {
+      delete data.times[id];
+    }
+    writeStore(data);
+  }
+
   function savedTimeFor(id) {
     var data = readStore();
     return data.times && Number(data.times[id]) || 0;
   }
 
   function resumeIfNeeded() {
-    if (!player || !videoId || typeof player.seekTo !== "function") {
+    if (skipResume || !player || !videoId || typeof player.seekTo !== "function") {
       return;
     }
     var target = savedTimeFor(videoId);
@@ -103,15 +112,34 @@
     if (now >= target - 1 && now <= target + 4) {
       return;
     }
-    if (now > 8 && Math.abs(now - target) > 8) {
-      try {
-        player.seekTo(target, true);
-      } catch (error) {}
-      return;
-    }
     try {
       player.seekTo(target, true);
     } catch (error) {}
+  }
+
+  function startFromBeginning() {
+    skipResume = true;
+    window.clearInterval(seekTimer);
+    if (videoId) {
+      clearSavedTime(videoId);
+    }
+    if (player && typeof player.seekTo === "function") {
+      try {
+        player.seekTo(0, true);
+      } catch (error) {}
+      try {
+        if (typeof player.playVideo === "function") {
+          player.playVideo();
+        }
+      } catch (error) {}
+    }
+    var status = document.getElementById("player-status");
+    if (status) {
+      status.textContent = "Playing from the beginning.";
+    }
+    window.setTimeout(function () {
+      skipResume = false;
+    }, 2500);
   }
 
   function startSeekAttempts() {
@@ -134,6 +162,7 @@
   function bindPlayer(nextPlayer, nextVideoId) {
     if (videoId && nextVideoId && nextVideoId !== videoId) {
       persist();
+      skipResume = false;
     }
     if (!nextPlayer) {
       return;
@@ -143,7 +172,9 @@
       videoId = nextVideoId;
     }
     startPoll();
-    startSeekAttempts();
+    if (!skipResume) {
+      startSeekAttempts();
+    }
   }
 
   document.addEventListener("playerReady", function (event) {
@@ -157,6 +188,12 @@
       return;
     }
     var action = target.dataset.action;
+    if (action === "restart-video") {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      startFromBeginning();
+      return;
+    }
     if (action === "play-index" || action === "next-video" || action === "previous-video") {
       persist();
     }
