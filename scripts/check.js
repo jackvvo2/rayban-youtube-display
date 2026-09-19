@@ -88,10 +88,11 @@ assert(manifest.background_color === "#000000", "manifest background is black");
 assert(manifest.display === "standalone", "manifest uses standalone display");
 assert(manifest.name === "Meta Display Playlist", "manifest name matches playlist app");
 
-//assert(serviceWorker.indexOf("rayban-youtube-display-v6") !== -1, "service worker cache was bumped");
 assert(serviceWorker.indexOf("./playlist.json") !== -1, "service worker caches playlist JSON");
 assert(refreshWorkflow.indexOf("workflow_dispatch") !== -1, "playlist refresh workflow can be run manually");
-assert(refreshWorkflow.indexOf("schedule:") === -1, "scheduled playlist refresh is disabled");
+assert(refreshWorkflow.indexOf("schedule:") !== -1, "scheduled playlist refresh is enabled");
+assert(refreshWorkflow.indexOf("0 16 * * *") !== -1, "schedule includes noon Eastern Daylight Time");
+assert(refreshWorkflow.indexOf("0 17 * * *") !== -1, "schedule includes noon Eastern Standard Time");
 
 var size = readPngSize("favicon.png");
 assert(size.width >= 53 && size.height >= 53, "favicon is larger than 52x52");
