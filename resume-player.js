@@ -8,18 +8,25 @@
     }
     event.preventDefault();
     event.stopImmediatePropagation();
-    var card = document.querySelector(".video-card.primary") || document.querySelector(".video-card[data-action='play-index']");
-    if (!card) {
-      var toast = document.getElementById("toast");
-      if (toast) {
-        toast.textContent = "No video to open yet";
-        toast.classList.add("visible");
-        window.setTimeout(function () {
-          toast.classList.remove("visible");
-        }, 3000);
-      }
+    if (window.PlaylistApp && typeof window.PlaylistApp.resumePlayer === "function") {
+      window.PlaylistApp.resumePlayer();
       return;
     }
-    card.click();
+
+    var playerScreen = document.getElementById("player-screen");
+    var homeScreen = document.getElementById("home-screen");
+    var target = document.getElementById("player-target");
+    if (playerScreen && target && target.querySelector("iframe")) {
+      if (homeScreen) {
+        homeScreen.classList.remove("active");
+      }
+      playerScreen.classList.add("active");
+      return;
+    }
+
+    var card = document.querySelector(".video-card.primary") || document.querySelector(".video-card[data-action='play-index']");
+    if (card) {
+      card.click();
+    }
   }, true);
 })();
