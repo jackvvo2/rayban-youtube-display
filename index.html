@@ -9,7 +9,6 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="cinema-bar.css">
   </head>
   <body>
     <main class="app-root" aria-live="polite">
@@ -49,10 +48,7 @@
             <p class="eyebrow" id="player-eyebrow">Now playing</p>
             <h2 id="video-title">Playlist video</h2>
           </div>
-          <div class="cinema-actions">
-            <button id="restart-video" class="focusable compact-button cinema-start" data-action="restart-video">Start</button>
-            <button id="controls-toggle" class="focusable compact-button cinema-toggle" data-action="toggle-controls" data-preferred-focus aria-expanded="false">Controls</button>
-          </div>
+          <button id="controls-toggle" class="focusable compact-button cinema-toggle" data-action="toggle-controls" data-preferred-focus aria-expanded="false">Controls</button>
         </header>
 
         <div class="player-shell">
@@ -64,6 +60,9 @@
         <div id="player-controls" class="control-grid controls-drawer is-hidden" aria-label="Player controls">
           <button id="play-toggle" class="focusable control-button primary" data-action="player-toggle">
             <span class="content">Play / Pause</span>
+          </button>
+          <button class="focusable control-button" data-action="restart-video">
+            <span class="content">From start</span>
           </button>
           <button class="focusable control-button" data-action="last-chapter">
             <span class="content">Last Chapter</span>

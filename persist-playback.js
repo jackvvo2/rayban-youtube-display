@@ -6,9 +6,8 @@
   var player = null;
   var videoId = "";
   var pollTimer = 0;
-  var seekTimer = 0;
-  var seekTries = 0;
   var skipResume = false;
+  var resumedFor = "";
 
   function readStore() {
     try {
@@ -69,11 +68,11 @@
     }
     var time = currentTime();
     var length = duration();
+    if (!time) {
+      return;
+    }
     if (length && time >= length - 2) {
       time = 0;
-    }
-    if (time < 2 && length === 0) {
-      return;
     }
     var data = readStore();
     data.times = data.times || {};
@@ -96,30 +95,37 @@
     return data.times && Number(data.times[id]) || 0;
   }
 
-  function resumeIfNeeded() {
-    if (skipResume || !player || !videoId || typeof player.seekTo !== "function") {
+  function resumeOnce() {
+    if (skipResume || !player || !videoId || resumedFor === videoId) {
+      return;
+    }
+    if (typeof player.seekTo !== "function") {
       return;
     }
     var target = savedTimeFor(videoId);
-    var length = duration();
     var now = currentTime();
-    if (!target || target < 3) {
+    var length = duration();
+    if (!target || target < 5) {
+      resumedFor = videoId;
       return;
     }
     if (length && target >= length - 5) {
+      resumedFor = videoId;
       return;
     }
-    if (now >= target - 1 && now <= target + 4) {
+    if (now >= 8) {
+      resumedFor = videoId;
       return;
     }
     try {
       player.seekTo(target, true);
     } catch (error) {}
+    resumedFor = videoId;
   }
 
   function startFromBeginning() {
     skipResume = true;
-    window.clearInterval(seekTimer);
+    resumedFor = videoId;
     if (videoId) {
       clearSavedTime(videoId);
     }
@@ -139,30 +145,19 @@
     }
     window.setTimeout(function () {
       skipResume = false;
-    }, 2500);
-  }
-
-  function startSeekAttempts() {
-    window.clearInterval(seekTimer);
-    seekTries = 0;
-    seekTimer = window.setInterval(function () {
-      seekTries += 1;
-      resumeIfNeeded();
-      if (seekTries >= 8) {
-        window.clearInterval(seekTimer);
-      }
-    }, 500);
+    }, 2000);
   }
 
   function startPoll() {
     window.clearInterval(pollTimer);
-    pollTimer = window.setInterval(persist, 1500);
+    pollTimer = window.setInterval(persist, 4000);
   }
 
   function bindPlayer(nextPlayer, nextVideoId) {
     if (videoId && nextVideoId && nextVideoId !== videoId) {
       persist();
       skipResume = false;
+      resumedFor = "";
     }
     if (!nextPlayer) {
       return;
@@ -172,9 +167,7 @@
       videoId = nextVideoId;
     }
     startPoll();
-    if (!skipResume) {
-      startSeekAttempts();
-    }
+    window.setTimeout(resumeOnce, 1200);
   }
 
   document.addEventListener("playerReady", function (event) {
@@ -201,5 +194,4 @@
 
   document.addEventListener("visibilitychange", persist);
   window.addEventListener("pagehide", persist);
-  window.addEventListener("beforeunload", persist);
 })();
