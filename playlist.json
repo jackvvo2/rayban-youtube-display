@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-09-22T19:28:00.838Z",
+  "generatedAt": "2026-09-23T19:23:01.365Z",
   "videos": [
     {
       "id": "cwfkvg5-2Xc",
@@ -16,6 +16,54 @@
       "thumbnail": "https://i4.ytimg.com/vi/cwfkvg5-2Xc/hqdefault.jpg",
       "description": "Disclaimer: I do not own the anime, music, artwork or the lyrics. All rights reserved to their respective owners. This video is not meant to infringe any of the copyrights. This is for promote. \"Copyright Disclaimer Und...",
       "watchUrl": "https://www.youtube.com/embed/cwfkvg5-2Xc"
+    },
+    {
+      "id": "9LvTJbHKwck",
+      "title": "(144) Betrayed by His Sister, He Reincarnates to the Past for Revenge | Manhwa Recap",
+      "author": "Daily Manhwaas",
+      "published": "2026-09-23T07:06:14+00:00",
+      "updated": "2026-09-23T09:15:24+00:00",
+      "thumbnail": "https://i2.ytimg.com/vi/9LvTJbHKwck/hqdefault.jpg",
+      "description": "Disclaimer: I do not own the anime, music, artwork or the lyrics. All rights reserved to their respective owners. This video is not meant to infringe any of the copyrights. This is for promote. \"Copyright Disclaimer Und...",
+      "watchUrl": "https://www.youtube.com/embed/9LvTJbHKwck"
+    },
+    {
+      "id": "hCa1Jo3_C5w",
+      "title": "1-11) He Becomes The Strongest After Awakening The Weakest Necromancer Class In Another World",
+      "author": "Manhwa temp",
+      "published": "2026-09-23T12:14:22+00:00",
+      "updated": "2026-09-23T12:20:05+00:00",
+      "thumbnail": "https://i1.ytimg.com/vi/hCa1Jo3_C5w/hqdefault.jpg",
+      "description": "Thanks for watching this video subscribe for more manhwa explain My Patreon Channel - https://www.patreon.com/reversemanhwa?utm_campaign=creatorshare_creator __________________________________________ Main Channel - htt...",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "Part 1"
+        },
+        {
+          "start": 7978,
+          "timestamp": "2:12:58",
+          "title": "Part 11"
+        }
+      ],
+      "lastChapter": {
+        "start": 7978,
+        "timestamp": "2:12:58",
+        "title": "Part 11"
+      },
+      "startAt": 7978,
+      "watchUrl": "https://www.youtube.com/embed/hCa1Jo3_C5w?start=7978"
+    },
+    {
+      "id": "3KfHimiaatA",
+      "title": "He Could Clear Dungeons In Seconds Using His Micro Bacteria Necromancer Soldiers / Manhwa Recap",
+      "author": "Reverse Manhwa",
+      "published": "2026-09-23T12:22:17+00:00",
+      "updated": "2026-09-23T12:22:17+00:00",
+      "thumbnail": "https://i4.ytimg.com/vi/3KfHimiaatA/hqdefault.jpg",
+      "description": "Thanks for watching this video subscribe for more manhwa explain __________________________________________ New Channel Link - https://youtube.com/@manhwatemp?si=BVTeGBxNJXBX8Nyn ________________________________________...",
+      "watchUrl": "https://www.youtube.com/embed/3KfHimiaatA"
     }
   ]
 }
