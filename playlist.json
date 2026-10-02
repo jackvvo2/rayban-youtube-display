@@ -5,17 +5,50 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-10-01T21:30:44.380Z",
+  "generatedAt": "2026-10-02T20:16:27.201Z",
   "videos": [
     {
       "id": "3KfHimiaatA",
       "title": "He Could Clear Dungeons In Seconds Using His Micro Bacteria Necromancer Soldiers / Manhwa Recap",
       "author": "Reverse Manhwa",
       "published": "2026-09-23T12:22:17+00:00",
-      "updated": "2026-09-27T22:57:31+00:00",
+      "updated": "2026-10-02T09:29:48+00:00",
       "thumbnail": "https://i4.ytimg.com/vi/3KfHimiaatA/hqdefault.jpg",
       "description": "Thanks for watching this video subscribe for more manhwa explain __________________________________________ New Channel Link - https://youtube.com/@Manhwatemp?si=BVTeGBxNJXBX8Nyn ________________________________________...",
-      "watchUrl": "https://www.youtube.com/embed/3KfHimiaatA"
+      "watchUrl": "https://www.youtube.com/embed/3KfHimiaatA?start=583",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "The legendary necromancer"
+        },
+        {
+          "start": 128,
+          "timestamp": "2:08",
+          "title": "A disappointing awakening"
+        },
+        {
+          "start": 227,
+          "timestamp": "3:47",
+          "title": "Seeking hidden potential"
+        },
+        {
+          "start": 355,
+          "timestamp": "5:55",
+          "title": "A grueling night shift"
+        },
+        {
+          "start": 583,
+          "timestamp": "9:43",
+          "title": "The power finally awakens"
+        }
+      ],
+      "lastChapter": {
+        "start": 583,
+        "timestamp": "9:43",
+        "title": "The power finally awakens"
+      },
+      "startAt": 583
     },
     {
       "id": "67yfyT1_Zg4",
@@ -116,7 +149,7 @@
       "title": "(130) Reborn as a Baby, He Unlocks the Infinite Evolution System From Scratch | Manhwa Recap",
       "author": "Daily Manhwaas",
       "published": "2026-09-24T17:04:22+00:00",
-      "updated": "2026-09-25T01:19:52+00:00",
+      "updated": "2026-10-02T15:00:06+00:00",
       "thumbnail": "https://i1.ytimg.com/vi/TAMJbKnCPQ4/hqdefault.jpg",
       "description": "Disclaimer: I do not own the anime, music, artwork or the lyrics. All rights reserved to their respective owners. This video is not meant to infringe any of the copyrights. This is for promote. \"Copyright Disclaimer Und...",
       "watchUrl": "https://www.youtube.com/embed/TAMJbKnCPQ4"
@@ -447,7 +480,7 @@
       "title": "1-15) He Becames Strongest Necromancer After He Was Reborn In Another RPG Game Like World",
       "author": "Manhwa temp",
       "published": "2026-09-25T12:14:20+00:00",
-      "updated": "2026-09-29T06:03:28+00:00",
+      "updated": "2026-10-02T06:41:00+00:00",
       "thumbnail": "https://i4.ytimg.com/vi/scNnhzbthRk/hqdefault.jpg",
       "description": "Thanks for watching this video subscribe for more manhwa explain My Patreon Channel - https://www.patreon.com/reversemanhwa?utm_campaign=creatorshare_creator __________________________________________ Main Channel - htt...",
       "chapters": [
@@ -469,6 +502,517 @@
       },
       "startAt": 10898,
       "watchUrl": "https://www.youtube.com/embed/scNnhzbthRk?start=10898"
+    },
+    {
+      "id": "RFQ9dzqS20I",
+      "title": "The Entire Story of Arcane In 111 Minutes",
+      "author": "JarToon",
+      "published": "2025-04-26T16:07:00+00:00",
+      "updated": "2026-09-06T05:49:04+00:00",
+      "thumbnail": "https://i3.ytimg.com/vi/RFQ9dzqS20I/hqdefault.jpg",
+      "description": "In 111 minutes, we break down every major moment, character arc, and twist from Arcane! check out our other channel: https://www.youtube.com/@jaranime0",
+      "watchUrl": "https://www.youtube.com/embed/RFQ9dzqS20I?start=6213",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "Introduction"
+        },
+        {
+          "start": 27,
+          "timestamp": "0:27",
+          "title": "Childhood and heist"
+        },
+        {
+          "start": 150,
+          "timestamp": "2:30",
+          "title": "Tensions in the Under City"
+        },
+        {
+          "start": 307,
+          "timestamp": "5:07",
+          "title": "Arcane mysteries and chaos"
+        },
+        {
+          "start": 609,
+          "timestamp": "10:09",
+          "title": "The base violence necessary"
+        },
+        {
+          "start": 904,
+          "timestamp": "15:04",
+          "title": "Progress day and new threats"
+        },
+        {
+          "start": 1312,
+          "timestamp": "21:52",
+          "title": "Seeking answers and redemption"
+        },
+        {
+          "start": 1653,
+          "timestamp": "27:33",
+          "title": "Walls come tumbling down"
+        },
+        {
+          "start": 2096,
+          "timestamp": "34:56",
+          "title": "The boy savior and showdown"
+        },
+        {
+          "start": 2495,
+          "timestamp": "41:35",
+          "title": "Oil and water"
+        },
+        {
+          "start": 2871,
+          "timestamp": "47:51",
+          "title": "Season 2 conflict"
+        },
+        {
+          "start": 3320,
+          "timestamp": "55:20",
+          "title": "Heavy is the crown"
+        },
+        {
+          "start": 3712,
+          "timestamp": "1:01:52",
+          "title": "Paint the town blue"
+        },
+        {
+          "start": 4063,
+          "timestamp": "1:07:43",
+          "title": "The dirt under your nails"
+        },
+        {
+          "start": 4448,
+          "timestamp": "1:14:08",
+          "title": "Vander's return"
+        },
+        {
+          "start": 4820,
+          "timestamp": "1:20:20",
+          "title": "A new family reunion"
+        },
+        {
+          "start": 5210,
+          "timestamp": "1:26:50",
+          "title": "The battle for Hexgates"
+        },
+        {
+          "start": 5531,
+          "timestamp": "1:32:11",
+          "title": "Parallel dimensions"
+        },
+        {
+          "start": 5830,
+          "timestamp": "1:37:10",
+          "title": "The monster within"
+        },
+        {
+          "start": 6213,
+          "timestamp": "1:43:33",
+          "title": "Killing is a cycle"
+        }
+      ],
+      "lastChapter": {
+        "start": 6213,
+        "timestamp": "1:43:33",
+        "title": "Killing is a cycle"
+      },
+      "startAt": 6213
+    },
+    {
+      "id": "w3P9cx66FvE",
+      "title": "The ENTIRE Story Of FIRE FORCE In 188 Minutes",
+      "author": "JarAnime",
+      "published": "2026-07-22T16:07:11+00:00",
+      "updated": "2026-09-30T07:09:27+00:00",
+      "thumbnail": "https://i4.ytimg.com/vi/w3P9cx66FvE/hqdefault.jpg",
+      "description": "Fire Force is one of the most visually explosive and stylish action anime around, blending fiery superpowers, striking animation, and a burning mystery at the heart of its world on an epic scale. In this video, we cover...",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "Intro"
+        },
+        {
+          "start": 127,
+          "timestamp": "2:07",
+          "title": "S1 E1 - Shinra Kusakabe Enlists"
+        },
+        {
+          "start": 343,
+          "timestamp": "5:43",
+          "title": "S1 E2 - The Heart of a Fire Soldier"
+        },
+        {
+          "start": 550,
+          "timestamp": "9:10",
+          "title": "S1 E3 - The Rookie Fire Soldier Games"
+        },
+        {
+          "start": 825,
+          "timestamp": "13:45",
+          "title": "S1 E4 - The Hero and the Princess"
+        },
+        {
+          "start": 985,
+          "timestamp": "16:25",
+          "title": "S1 E5 - The Battle Begins"
+        },
+        {
+          "start": 1139,
+          "timestamp": "18:59",
+          "title": "S1 E6 - The Spark of Promise"
+        },
+        {
+          "start": 1305,
+          "timestamp": "21:45",
+          "title": "S1 E7 - The Investigation of the 1st Commences"
+        },
+        {
+          "start": 1433,
+          "timestamp": "23:53",
+          "title": "S1 E8 - Infernal Insects"
+        },
+        {
+          "start": 1611,
+          "timestamp": "26:51",
+          "title": "S1 E9 - The Spreading Malice"
+        },
+        {
+          "start": 1763,
+          "timestamp": "29:23",
+          "title": "S1 E10 - The Promise"
+        },
+        {
+          "start": 1919,
+          "timestamp": "31:59",
+          "title": "S1 E11 - Formation of Special Fire Force Company 8"
+        },
+        {
+          "start": 2097,
+          "timestamp": "34:57",
+          "title": "S1 E12 - Eve of Hostilities in Asakusa"
+        },
+        {
+          "start": 2255,
+          "timestamp": "37:35",
+          "title": "S1 E13 - The Trap Is Set"
+        },
+        {
+          "start": 2380,
+          "timestamp": "39:40",
+          "title": "S1 E14 - For Whom the Flames Burn"
+        },
+        {
+          "start": 2551,
+          "timestamp": "42:31",
+          "title": "S1 E15 - The Blacksmith’s Dream"
+        },
+        {
+          "start": 2714,
+          "timestamp": "45:14",
+          "title": "S1 E16 - We Are Family"
+        },
+        {
+          "start": 2842,
+          "timestamp": "47:22",
+          "title": "S1 E17 - Black and White and Gray"
+        },
+        {
+          "start": 2985,
+          "timestamp": "49:45",
+          "title": "S1 E18 - The Secrets of Pyrokinesis"
+        },
+        {
+          "start": 3108,
+          "timestamp": "51:48",
+          "title": "S1 E19 - Into the Nether"
+        },
+        {
+          "start": 3240,
+          "timestamp": "54:00",
+          "title": "S1 E20 - Wearing His Pride"
+        },
+        {
+          "start": 3375,
+          "timestamp": "56:15",
+          "title": "S1 E21 - Those Connected"
+        },
+        {
+          "start": 3547,
+          "timestamp": "59:07",
+          "title": "S1 E22 - A Brother’s Determination"
+        },
+        {
+          "start": 3727,
+          "timestamp": "1:02:07",
+          "title": "S1 E23 - Smile"
+        },
+        {
+          "start": 3889,
+          "timestamp": "1:04:49",
+          "title": "S1 E24 - The Burning Past"
+        },
+        {
+          "start": 4036,
+          "timestamp": "1:07:16",
+          "title": "S2 E1 - A Fire Soldier’s Fight"
+        },
+        {
+          "start": 4119,
+          "timestamp": "1:08:39",
+          "title": "S2 E2 - Flames of Madness"
+        },
+        {
+          "start": 4295,
+          "timestamp": "1:11:35",
+          "title": "S2 E3 - A New Flashpoint"
+        },
+        {
+          "start": 4481,
+          "timestamp": "1:14:41",
+          "title": "S2 E4 - Groping Through the Fire"
+        },
+        {
+          "start": 4588,
+          "timestamp": "1:16:28",
+          "title": "S2 E5 - Corna (Sign of the Devil)"
+        },
+        {
+          "start": 4736,
+          "timestamp": "1:18:56",
+          "title": "S2 E6 - The Time to Choose"
+        },
+        {
+          "start": 4824,
+          "timestamp": "1:20:24",
+          "title": "S2 E7 - Road to the Oasis"
+        },
+        {
+          "start": 4969,
+          "timestamp": "1:22:49",
+          "title": "S2 E8 - Smoldering Malevolence"
+        },
+        {
+          "start": 5116,
+          "timestamp": "1:25:16",
+          "title": "S2 E9 - The Core"
+        },
+        {
+          "start": 5232,
+          "timestamp": "1:27:12",
+          "title": "S2 E10 - The Woman in Black"
+        },
+        {
+          "start": 5368,
+          "timestamp": "1:29:28",
+          "title": "S2 E11 - Dark Hero"
+        },
+        {
+          "start": 5489,
+          "timestamp": "1:31:29",
+          "title": "S2 E12 - Shadows Cast by Divine Light"
+        },
+        {
+          "start": 5623,
+          "timestamp": "1:33:43",
+          "title": "S2 E13 - A Pair of One-Eyes"
+        },
+        {
+          "start": 5770,
+          "timestamp": "1:36:10",
+          "title": "S2 E14 - The Ashen Reaper"
+        },
+        {
+          "start": 5937,
+          "timestamp": "1:38:57",
+          "title": "S2 E15 - A Three-Way Melee"
+        },
+        {
+          "start": 6074,
+          "timestamp": "1:41:14",
+          "title": "S2 E16 - Mind Blown"
+        },
+        {
+          "start": 6237,
+          "timestamp": "1:43:57",
+          "title": "S2 E17 - Boys, Be Weak"
+        },
+        {
+          "start": 6412,
+          "timestamp": "1:46:52",
+          "title": "S2 E18 - The Holy Woman's Anguish"
+        },
+        {
+          "start": 6526,
+          "timestamp": "1:48:46",
+          "title": "S2 E19 - The Oze Family"
+        },
+        {
+          "start": 6633,
+          "timestamp": "1:50:33",
+          "title": "S2 E20 - Weapon of Destruction"
+        },
+        {
+          "start": 6771,
+          "timestamp": "1:52:51",
+          "title": "S2 E21 - Enemy Contact"
+        },
+        {
+          "start": 6890,
+          "timestamp": "1:54:50",
+          "title": "S2 E22 - Plot for Extinction"
+        },
+        {
+          "start": 7067,
+          "timestamp": "1:57:47",
+          "title": "S2 E23 - Firecat"
+        },
+        {
+          "start": 7212,
+          "timestamp": "2:00:12",
+          "title": "S2 E24 - Signs of Upheaval"
+        },
+        {
+          "start": 7385,
+          "timestamp": "2:03:05",
+          "title": "S3 E1 - Indomitable Resolve"
+        },
+        {
+          "start": 7505,
+          "timestamp": "2:05:05",
+          "title": "S3 E2 - Prisoner"
+        },
+        {
+          "start": 7636,
+          "timestamp": "2:07:16",
+          "title": "S3 E3 - Incarnation of Flame"
+        },
+        {
+          "start": 7773,
+          "timestamp": "2:09:33",
+          "title": "S3 E4 - Golden Secret"
+        },
+        {
+          "start": 7907,
+          "timestamp": "2:11:47",
+          "title": "S3 E5 - Chance Meeting with an Arch-Enemy"
+        },
+        {
+          "start": 8087,
+          "timestamp": "2:14:47",
+          "title": "S3 E6 - Beyond Prayer's End"
+        },
+        {
+          "start": 8265,
+          "timestamp": "2:17:45",
+          "title": "S3 E7 - Sleeping Truth"
+        },
+        {
+          "start": 8383,
+          "timestamp": "2:19:43",
+          "title": "S3 E8 - Holy Mother of Darkness"
+        },
+        {
+          "start": 8502,
+          "timestamp": "2:21:42",
+          "title": "S3 E9 - Holy Sword, Resurrected"
+        },
+        {
+          "start": 8611,
+          "timestamp": "2:23:31",
+          "title": "S3 E10 - Advent"
+        },
+        {
+          "start": 8728,
+          "timestamp": "2:25:28",
+          "title": "S3 E11 - The Great Kaiju Battlefront"
+        },
+        {
+          "start": 8865,
+          "timestamp": "2:27:45",
+          "title": "S3 E12 - The Madness of the Distant Past"
+        },
+        {
+          "start": 9004,
+          "timestamp": "2:30:04",
+          "title": "S3 E13 - Unaware"
+        },
+        {
+          "start": 9160,
+          "timestamp": "2:32:40",
+          "title": "S3 E14 - With the Sun at His Back"
+        },
+        {
+          "start": 9337,
+          "timestamp": "2:35:37",
+          "title": "S3 E15 - Birth"
+        },
+        {
+          "start": 9520,
+          "timestamp": "2:38:40",
+          "title": "S3 E16 - Savior"
+        },
+        {
+          "start": 9687,
+          "timestamp": "2:41:27",
+          "title": "S3 E17 - At the Center of the World"
+        },
+        {
+          "start": 9806,
+          "timestamp": "2:43:26",
+          "title": "S3 E18 - Incantation of Destruction"
+        },
+        {
+          "start": 9966,
+          "timestamp": "2:46:06",
+          "title": "S3 E19 - Those Who Fight Back"
+        },
+        {
+          "start": 10151,
+          "timestamp": "2:49:11",
+          "title": "S3 E20 - Where Hope Is"
+        },
+        {
+          "start": 10387,
+          "timestamp": "2:53:07",
+          "title": "S3 E21 - Dragon and Knight Surge Toward the Heavens"
+        },
+        {
+          "start": 10620,
+          "timestamp": "2:57:00",
+          "title": "S3 E22 - Hero Resurrected"
+        },
+        {
+          "start": 10785,
+          "timestamp": "2:59:45",
+          "title": "S3 E23 - Despair Saintess"
+        },
+        {
+          "start": 10942,
+          "timestamp": "3:02:22",
+          "title": "S3 E24 - Answer"
+        },
+        {
+          "start": 11121,
+          "timestamp": "3:05:21",
+          "title": "S3 E25 - Hero's Tale"
+        },
+        {
+          "start": 11320,
+          "timestamp": "3:08:40",
+          "title": "Outro"
+        }
+      ],
+      "lastChapter": {
+        "start": 11320,
+        "timestamp": "3:08:40",
+        "title": "Outro"
+      },
+      "startAt": 11320,
+      "watchUrl": "https://www.youtube.com/embed/w3P9cx66FvE?start=11320"
     }
   ]
 }
