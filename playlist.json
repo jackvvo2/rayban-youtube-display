@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-10-10T19:40:07.967Z",
+  "generatedAt": "2026-10-11T19:50:09.897Z",
   "videos": [
     {
       "id": "T_tAOuUNDxw",
@@ -541,28 +541,53 @@
       "title": "(1-4)Humanity's Rank #1 King Died Killing The Demons, But Reincarnated As An Calamity Class Summoner",
       "author": "manhwa free",
       "published": "2026-10-04T13:25:13+00:00",
-      "updated": "2026-10-05T09:28:45+00:00",
+      "updated": "2026-10-09T09:28:59+00:00",
       "thumbnail": "https://i3.ytimg.com/vi/JirzHLtYsew/hqdefault.jpg",
       "description": "Humanity's Rank #1 King Died Killing The Demons, But Reincarnated As An Calamity Class Summoner! manhwa recap I Don't Own The Manhwa/Artwork/Comic. All Rights Reserved To Their Respective Owners. This Video Is Not Meant...",
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00:00",
-          "title": "new part"
+          "timestamp": "0:00",
+          "title": "The final stand"
         },
         {
-          "start": 4344,
-          "timestamp": "01:12:24",
-          "title": "Chapter 2"
+          "start": 137,
+          "timestamp": "2:17",
+          "title": "The ultimate sacrifice"
+        },
+        {
+          "start": 263,
+          "timestamp": "4:23",
+          "title": "A new world"
+        },
+        {
+          "start": 379,
+          "timestamp": "6:19",
+          "title": "Survival at stake"
+        },
+        {
+          "start": 524,
+          "timestamp": "8:44",
+          "title": "Turning the tide"
+        },
+        {
+          "start": 662,
+          "timestamp": "11:02",
+          "title": "A vow of hope"
+        },
+        {
+          "start": 788,
+          "timestamp": "13:08",
+          "title": "Trapped by betrayal"
         }
       ],
       "lastChapter": {
-        "start": 4344,
-        "timestamp": "01:12:24",
-        "title": "Chapter 2"
+        "start": 788,
+        "timestamp": "13:08",
+        "title": "Trapped by betrayal"
       },
-      "startAt": 4344,
-      "watchUrl": "https://www.youtube.com/embed/JirzHLtYsew?start=4344"
+      "startAt": 788,
+      "watchUrl": "https://www.youtube.com/embed/JirzHLtYsew?start=788"
     }
   ]
 }
