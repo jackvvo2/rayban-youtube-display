@@ -1,4 +1,4 @@
-var CACHE = "rayban-youtube-display-v9.1";
+var CACHE = "rayban-youtube-display-v9.2";
 var URLS = [
   "./",
   "./index.html",
@@ -71,6 +71,23 @@ self.addEventListener("message", function (event) {
 self.addEventListener("fetch", function (event) {
   var url = new URL(event.request.url);
   if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Network-first for page navigations so a new deploy (e.g. new scripts in
+  // index.html) is picked up on the first launch; cache-first for the rest.
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).then(function (response) {
+        var copy = response.clone();
+        caches.open(CACHE).then(function (cache) { cache.put(event.request, copy); });
+        return response;
+      }).catch(function () {
+        return caches.match(event.request).then(function (cached) {
+          return cached || caches.match("./index.html");
+        });
+      })
+    );
     return;
   }
 

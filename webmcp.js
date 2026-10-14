@@ -9,7 +9,42 @@
   "use strict";
 
   var mc = document.modelContext;
+  var badge = null;
+  var baseText = "";
+  var flashTimer = 0;
+  var okCount = 0;
+  var failed = false;
+
+  function setBadge(text) {
+    if (!badge) {
+      badge = document.createElement("div");
+      badge.id = "webmcp-status";
+      badge.setAttribute("aria-hidden", "true");
+      badge.style.cssText = "position:fixed;left:8px;bottom:6px;z-index:9999;pointer-events:none;" +
+        "font:600 12px/1.2 system-ui,sans-serif;color:#9fb3c8;background:rgba(0,0,0,.55);" +
+        "padding:2px 6px;border-radius:6px;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis";
+      (document.body || document.documentElement).appendChild(badge);
+    }
+    badge.textContent = text;
+  }
+  function showBase() { setBadge(baseText); }
+  function flash(name) {
+    window.clearTimeout(flashTimer);
+    setBadge("WebMCP: " + name);
+    badge.style.color = "#7CFFB2";
+    flashTimer = window.setTimeout(function () { badge.style.color = "#9fb3c8"; showBase(); }, 2500);
+  }
+  function updateBase() {
+    baseText = failed && !okCount ? "WebMCP: error" : "WebMCP: " + okCount + " tools" + (failed ? " (some failed)" : "");
+    showBase();
+  }
+  function onReady(fn) {
+    if (document.body) { fn(); } else { document.addEventListener("DOMContentLoaded", fn); }
+  }
+
   if (!mc || typeof mc.registerTool !== "function") {
+    baseText = "WebMCP: off";
+    onReady(showBase);
     return;
   }
 
@@ -65,10 +100,28 @@
     return result;
   }
 
+  // registerTool may return a promise, a handle, or undefined depending on the
+  // build, and may throw synchronously. Never chain .catch blindly.
   function register(def) {
+    var run = def.execute;
+    def.execute = function (input, opts) {
+      try { flash(def.name); } catch (e) { /* ignore */ }
+      return run.call(this, input, opts);
+    };
     try {
-      mc.registerTool(def).catch(function () {});
-    } catch (e) { /* sync TypeError */ }
+      var r = mc.registerTool(def);
+      if (r && typeof r.then === "function") {
+        r.then(function () { okCount++; updateBase(); }, function (err) {
+          failed = true; updateBase(); console.error("WebMCP " + def.name + " failed", err);
+        });
+      } else {
+        okCount++;
+      }
+    } catch (err) {
+      failed = true;
+      console.error("WebMCP " + def.name + " failed", err);
+    }
+    onReady(updateBase);
   }
 
   register({
