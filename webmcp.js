@@ -221,6 +221,27 @@
   });
 
   register({
+    name: "player_open",
+    description: "Open player / show video / resume / continue watching: reopen the video player from the playlist with the last video at its saved position (video 1 if none), same as the Open player button.",
+    inputSchema: { type: "object", properties: {} },
+    async execute() {
+      var active = document.querySelector(".screen.active");
+      if (active && active.id === "player-screen") {
+        return { ok: false, message: "The player is already open.", now: playerInfo(), next_action: "Stop and talk, or call playback_control." };
+      }
+      if (!clickAction("resume-player")) {
+        if (!cards().length) {
+          return { ok: false, message: "Playlist is not loaded yet.", now: playerInfo(), next_action: "Call playlist_refresh, then try again." };
+        }
+        cards()[0].click();
+      }
+      await wait(900);
+      var info = playerInfo();
+      return { ok: info.screen === "player-screen", now: info, next_action: "Confirm in one short sentence. Stop and talk." };
+    }
+  });
+
+  register({
     name: "player_close",
     description: "Close player / hide video / go back: leave the video player and return to the playlist, same as the on-screen Back button.",
     inputSchema: { type: "object", properties: {} },
