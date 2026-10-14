@@ -221,6 +221,24 @@
   });
 
   register({
+    name: "player_close",
+    description: "Close player / hide video / go back: leave the video player and return to the playlist, same as the on-screen Back button.",
+    inputSchema: { type: "object", properties: {} },
+    async execute() {
+      var active = document.querySelector(".screen.active");
+      if (!active || active.id !== "player-screen") {
+        return { ok: false, message: "The player is not open; the playlist is already showing.", now: { screen: active ? active.id : "" }, next_action: "Stop and talk." };
+      }
+      if (!clickAction("back", "")) {
+        return { ok: false, message: "Back button not found.", now: { screen: active.id }, next_action: "Stop and talk." };
+      }
+      await wait(300);
+      var now = document.querySelector(".screen.active");
+      return { ok: !!now && now.id !== "player-screen", now: { screen: now ? now.id : "" }, next_action: "Confirm in one short sentence. Stop and talk." };
+    }
+  });
+
+  register({
     name: "playlist_refresh",
     description: "Reload the playlist from the server.",
     inputSchema: { type: "object", properties: {} },
