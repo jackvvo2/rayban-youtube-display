@@ -132,6 +132,11 @@
       case "back":
         goBack();
         break;
+      case "skip-30":
+      case "restart-video":
+      case "resume-player":
+        // Handled by play-toggle-fix.js / persist-playback.js / resume-player.js.
+        break;
       default:
         showToast("Action unavailable");
     }
