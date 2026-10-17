@@ -45,7 +45,13 @@
     event.stopImmediatePropagation();
 
     if (hasVideoFrame()) {
-      showPlayerScreen();
+      if (showPlayerScreen()) {
+        // The pressed button is now hidden; move D-pad focus onto the player.
+        var toggle = document.getElementById("controls-toggle");
+        if (toggle) {
+          try { toggle.focus({ preventScroll: true }); } catch (error) { toggle.focus(); }
+        }
+      }
       return;
     }
 

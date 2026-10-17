@@ -105,8 +105,19 @@
   function register(def) {
     var run = def.execute;
     def.execute = function (input, opts) {
+      var signal = opts && opts.signal;
+      if (signal && signal.aborted) {
+        return Promise.reject(signal.reason || new DOMException("Aborted", "AbortError"));
+      }
       try { flash(def.name); } catch (e) { /* ignore */ }
-      return run.call(this, input, opts);
+      var work = Promise.resolve().then(function () { return run.call(def, input || {}, opts || {}); });
+      if (!signal || typeof signal.addEventListener !== "function") { return work; }
+      // Stop waiting as soon as the host cancels (e.g. the 10 s deadline).
+      return Promise.race([work, new Promise(function (resolve, reject) {
+        signal.addEventListener("abort", function () {
+          reject(signal.reason || new DOMException("Aborted", "AbortError"));
+        }, { once: true });
+      })]);
     };
     try {
       var r = mc.registerTool(def);
@@ -171,6 +182,7 @@
 
   register({
     name: "playback_control",
+    annotations: { untrustedContentHint: true },
     description: "Control the player. action is one of: toggle (play/pause), next, previous, skip30, restart, next_chapter, previous_chapter, last_chapter.",
     inputSchema: {
       type: "object",
@@ -185,6 +197,15 @@
       };
       var a = input && map[String(input.action || "").toLowerCase()];
       if (!a) { return { error: "bad_action", message: "Unknown action.", next_action: "Retry with one of the listed actions." }; }
+      // Everything except next/previous video acts on the open player; on the
+      // playlist screen (or before a YouTube player exists) these would
+      // silently do nothing, so say so instead of reporting success.
+      if (a !== "next-video" && a !== "previous-video") {
+        var scr = document.querySelector(".screen.active");
+        if (!player || !scr || scr.id !== "player-screen") {
+          return { error: "no_player", message: "No video is open.", now: playerInfo(), next_action: "Call player_open or play_video first." };
+        }
+      }
       if (a === "next-chapter" || a === "previous-chapter") {
         // No buttons exist for these; call ChapterManager directly.
         var cm = window.ChapterManager;
@@ -201,14 +222,19 @@
 
   register({
     name: "seek_to",
+    annotations: { untrustedContentHint: true },
     description: "Jump to a time in the current video, in seconds from the start.",
     inputSchema: { type: "object", properties: { seconds: { type: "number", description: "Target time in seconds." } }, required: ["seconds"] },
     async execute(input) {
       var s = Number(input && input.seconds);
       if (!isFinite(s) || s < 0) { return { error: "bad_time", message: "Seconds must be zero or more." }; }
       if (!player || typeof player.seekTo !== "function") { return { error: "no_player", message: "No video is playing.", next_action: "Call play_video first." }; }
+      var dur = 0;
+      try { dur = Number(player.getDuration()) || 0; } catch (e) { /* ignore */ }
+      var clamped = false;
+      if (dur > 0 && s > dur - 1) { s = Math.max(0, Math.floor(dur - 1)); clamped = true; }
       player.seekTo(s, true);
-      return settle({ seeked_to: s });
+      return settle(clamped ? { seeked_to: s, clamped: true, message: "That is past the end; jumped near the end instead." } : { seeked_to: s });
     }
   });
 
@@ -222,6 +248,7 @@
 
   register({
     name: "player_open",
+    annotations: { untrustedContentHint: true },
     description: "Open player / show video / resume / continue watching: reopen the video player from the playlist with the last video at its saved position (video 1 if none), same as the Open player button.",
     inputSchema: { type: "object", properties: {} },
     async execute() {
