@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=600, height=600, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="Meta Ray-Ban Display YouTube playlist player. Voice: use the playlist_list, play_video, playback_control, seek_to, player_status, player_open, player_close, playlist_refresh and video_size tools to control playback (video_size takes percent 20-100, e.g. 'make video 70 percent' means percent 70); reply in one short sentence and do not read the screen back.">
+    <meta name="description" content="Meta Ray-Ban Display YouTube playlist player. Voice: use the playlist_list, play_video, playback_control, seek_to, player_status, player_open, player_close, playlist_refresh, video_size and captions tools to control playback (video_size takes percent 20-100, e.g. 'make video 70 percent' means percent 70; captions takes enabled true/false, e.g. 'turn off captions' or 'CC off' means enabled false, 'turn on subtitles/CC' means enabled true); reply in one short sentence and do not read the screen back.">
     <title>Meta Display Playlist</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="manifest" href="manifest.webmanifest">
@@ -100,6 +100,7 @@
     <script src="focus-restore.js" defer></script>
     <script src="video-focus.js" defer></script>
     <script src="battery.js" defer></script>
+    <script src="captions.js" defer></script>
     <script src="webmcp.js" defer></script>
     <script src="version-label.js" defer></script>
   </body>

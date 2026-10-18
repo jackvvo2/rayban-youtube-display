@@ -36,7 +36,7 @@ for mode in ["mock","none","throw","reject"]:
   for c in checks: print("CHECK", "PASS" if c["pass"] else "FAIL", c["name"], "" if c["pass"] else json.dumps(c.get("detail"))[:200])
   failed=[c for c in checks if not c["pass"]]
   total+=len(checks); passed+=len(checks)-len(failed)
-  if L["errors"] or bad or L["meta"]["count"]<9 or "video_size" not in L["meta"]["names"] or not checks or failed: fail=True
+  if L["errors"] or bad or L["meta"]["count"]<10 or "video_size" not in L["meta"]["names"] or "captions" not in L["meta"]["names"] or not checks or failed: fail=True
 print("CHECKS %d/%d passed" % (passed, total))
 sys.exit(1 if fail else 0)
 E

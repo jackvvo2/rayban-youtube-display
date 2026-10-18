@@ -97,6 +97,11 @@
     var bat = window.GlassesBattery && typeof window.GlassesBattery.get === "function" ? window.GlassesBattery.get() : null;
     info.battery_level = bat && typeof bat.battery_level === "number" ? bat.battery_level : null;
     info.charging = bat && typeof bat.charging === "boolean" ? bat.charging : null;
+    // Captions: saved preference ("on"/"off", null = YouTube default) and,
+    // best effort, the live caption track language.
+    var cc = window.Captions;
+    info.captions = cc && typeof cc.pref === "function" ? cc.pref() : null;
+    info.captions_track = cc && typeof cc.track === "function" ? cc.track() : null;
     if (window.ChapterManager) {
       var ch = window.ChapterManager.getCurrentChapter();
       if (ch) { info.chapter = ch.title; }
@@ -250,7 +255,7 @@
 
   register({
     name: "player_status",
-    description: "Report what is on screen: current video, play state, time, chapter, and glasses battery_level (percent) and charging (null if unknown).",
+    description: "Report what is on screen: current video, play state, time, chapter, captions (on/off preference) and captions_track, and glasses battery_level (percent) and charging (null if unknown).",
     annotations: { readOnlyHint: true, untrustedContentHint: true },
     inputSchema: { type: "object", properties: {} },
     async execute() { return playerInfo(); }
@@ -317,6 +322,42 @@
       var applied = vf.setSize(p);
       var result = { size_percent: applied, next_action: "Confirm in one short sentence. Stop and talk." };
       if (applied !== Math.round(p)) { result.clamped = true; result.message = "Size limited to 20-100 percent."; }
+      return result;
+    }
+  });
+
+  register({
+    name: "captions",
+    description: "Turn YouTube closed captions / subtitles / CC on or off. 'Turn off captions' or 'CC off' means enabled false. Saved for later videos and relaunches.",
+    inputSchema: {
+      type: "object",
+      properties: { enabled: { type: "boolean", description: "true to show captions, false to hide them." } },
+      required: ["enabled"]
+    },
+    async execute(input, opts) {
+      var signal = opts && opts.signal;
+      var cc = window.Captions;
+      if (!cc || typeof cc.set !== "function") { return { error: "unavailable", message: "Captions control is not available." }; }
+      var raw = input ? input.enabled : undefined;
+      var on = null;
+      if (typeof raw === "boolean") { on = raw; }
+      else if (typeof raw === "string") {
+        var v = raw.trim().toLowerCase();
+        if (["true", "on", "yes", "1"].indexOf(v) !== -1) { on = true; }
+        else if (["false", "off", "no", "0"].indexOf(v) !== -1) { on = false; }
+      } else if (raw === 1 || raw === 0) { on = raw === 1; }
+      if (on === null) {
+        return { error: "bad_enabled", message: "enabled must be true or false.", captions: cc.pref(), next_action: "Ask the user on or off, then retry." };
+      }
+      if (signal && signal.aborted) { throw signal.reason || new DOMException("Aborted", "AbortError"); }
+      var r = cc.set(on);
+      var result = { captions: r.captions, next_action: "Confirm in one short sentence. Stop and talk." };
+      if (!r.applied) {
+        result.applied = false;
+        result.note = "No video player is open; the setting is saved and applies to the next video.";
+      } else if (on) {
+        result.note = "Requested from YouTube; some videos have no captions or only auto-generated ones.";
+      }
       return result;
     }
   });

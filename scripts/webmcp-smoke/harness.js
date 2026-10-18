@@ -25,7 +25,7 @@
   // Faithful-enough YT stub
   var PS = {UNSTARTED:-1, ENDED:0, PLAYING:1, PAUSED:2, BUFFERING:3, CUED:5};
   function Player(id, opts){
-    var self=this, el=document.getElementById(id);
+    var self=this, el=document.getElementById(id); window.__ytOpts=opts;
     var f=document.createElement("iframe"); f.id=id; f.className=el.className; el.replaceWith(f);
     this._o=opts; this._t=(opts.playerVars&&opts.playerVars.start)||0; this._s=-1; this._vid=opts.videoId; this._dur=600;
     setTimeout(function(){ opts.events.onReady({target:self}); }, 50);
@@ -36,7 +36,12 @@
     seekTo:function(t){ this._t=t; }, getCurrentTime:function(){ return this._t; },
     getDuration:function(){ return this._dur; }, getPlayerState:function(){ return this._s; },
     loadVideoById:function(a){ this._vid=typeof a==="string"?a:a.videoId; this._t=(a&&a.startSeconds)||0; this._set(1); },
-    getVideoData:function(){ return {video_id:this._vid}; }
+    getVideoData:function(){ return {video_id:this._vid}; },
+    // Captions module stub: records calls, tracks the active track.
+    loadModule:function(m){ (window.__ccLog=window.__ccLog||[]).push({op:"load",m:m,vid:this._vid}); if(m==="captions") this._ccMod=true; },
+    unloadModule:function(m){ (window.__ccLog=window.__ccLog||[]).push({op:"unload",m:m,vid:this._vid}); if(m==="captions"){ this._ccMod=false; this._ccTrack={}; } },
+    setOption:function(m,k,v){ (window.__ccLog=window.__ccLog||[]).push({op:"set",m:m,k:k,v:v,vid:this._vid}); if(m==="captions"&&k==="track") this._ccTrack=v||{}; },
+    getOption:function(m,k){ if(m!=="captions") return undefined; if(k==="tracklist") return [{languageCode:"fr",kind:""},{languageCode:"en",kind:"asr"},{languageCode:"en-US",kind:""}]; if(k==="track") return this._ccTrack||{}; }
   };
   window.YT={Player:Player, PlayerState:PS};
 })();

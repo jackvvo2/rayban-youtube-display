@@ -131,7 +131,7 @@ var webmcpTools = [];
 })();
 var reserved = ["openUrl", "goBack", "goForward", "reload", "getCurrentUrl", "getPageTitle", "getPageText"];
 var scalar = ["string", "number", "integer", "boolean"];
-assert(webmcpTools.length === 9, "webmcp.js registers 9 tools (got " + webmcpTools.length + ")");
+assert(webmcpTools.length === 10, "webmcp.js registers 10 tools (got " + webmcpTools.length + ")");
 var videoSizeTool = webmcpTools.find(function (t) { return t.name === "video_size"; });
 assert(Boolean(videoSizeTool), "webmcp.js registers video_size");
 if (videoSizeTool) {
@@ -164,6 +164,22 @@ assert(batterySrc.indexOf("navigator") !== -1 && /typeof nav\.getBattery !== "fu
 assert(/levelchange/.test(batterySrc) && /chargingchange/.test(batterySrc), "battery.js listens for levelchange and chargingchange");
 assert(/AMBER = 20/.test(batterySrc) && /RED = 10/.test(batterySrc) && /TOAST_AT = 15/.test(batterySrc), "battery thresholds 20/10/15");
 assert(batteryCss.indexOf("body.video-blackout .toast.toast-urgent") !== -1, "low-battery toast shows during blackout");
+// --- Captions (captions.js + captions tool) ---
+var captionsSrc = read("captions.js");
+var captionsTool = webmcpTools.find(function (t) { return t.name === "captions"; });
+assert(Boolean(captionsTool), "webmcp.js registers captions");
+if (captionsTool) {
+  var ccProps = (captionsTool.inputSchema && captionsTool.inputSchema.properties) || {};
+  assert(Object.keys(ccProps).length === 1 && ccProps.enabled && ccProps.enabled.type === "boolean", "captions has one top-level boolean enabled");
+  assert((captionsTool.inputSchema.required || []).indexOf("enabled") !== -1, "captions.enabled is required");
+}
+assert(/<script src="captions\.js" defer><\/script>/.test(html) && html.indexOf("captions.js") < html.indexOf("webmcp.js"), "index.html loads captions.js before webmcp.js");
+assert(serviceWorker.indexOf('"./captions.js"') !== -1, "service worker caches captions.js");
+assert(/name="description"[^>]*captions[^>]*turn off captions/.test(html), "meta description gives captions voice guidance");
+assert(/loadModule\("captions"\)/.test(captionsSrc) && /unloadModule\("captions"\)/.test(captionsSrc) && /setOption\("captions", "track"/.test(captionsSrc), "captions.js uses the IFrame API captions module");
+assert(/cc_load_policy/.test(captionsSrc) && /localStorage/.test(captionsSrc), "captions preference persisted and applied via cc_load_policy");
+assert(/Captions\.playerVars/.test(js) && /Captions\.embedParams/.test(js), "app.js applies captions preference to new players and fallback embed");
+assert(/info\.captions =/.test(webmcpSrc), "player_status reports captions");
 assert(/battery_level/.test(webmcpSrc) && /info\.charging/.test(webmcpSrc), "player_status reports battery_level and charging");
 var seenPrefixes = {};
 webmcpTools.forEach(function (tool) {

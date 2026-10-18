@@ -48,6 +48,17 @@ window.addEventListener("load", function(){ setTimeout(async function(){
   check("battery back to 55% no bolt", bats().every(e=>e.textContent==="55%"), bats()[0].textContent);
   // before player ready / home screen
   await call("player_status",{},"status@home");
+  // ---- captions before any player: saved, honest note ---------------------
+  var cc;
+  cc=await call("captions",{enabled:true},"captions on@noplayer");
+  check("captions on with no player saves pref + note", cc.captions==="on" && cc.applied===false && /saved/i.test(cc.note||"") && localStorage.getItem("rayban-youtube-display:captions:v1")==="on", cc);
+  cc=await call("captions",{enabled:"maybe"},"captions bad");
+  check("captions bad input errors", cc.error==="bad_enabled" && cc.captions==="on", cc);
+  cc=await call("captions",{},"captions missing");
+  check("captions missing errors", cc.error==="bad_enabled", cc);
+  var acc=new AbortController(); acc.abort();
+  try { await f("captions").execute({enabled:false},{signal:acc.signal}); check("captions honors abort", false, "resolved"); }
+  catch(e){ check("captions honors abort", e.name==="AbortError" && localStorage.getItem("rayban-youtube-display:captions:v1")==="on", e.name); }
   await call("seek_to",{seconds:10},"seek@noplayer");
   for (const a of ["skip30","restart","next_chapter","previous_chapter","last_chapter"]) await call("playback_control",{action:a},"pc_"+a+"@noplayer");
   await call("player_close",{},"close@home");
@@ -61,6 +72,25 @@ window.addEventListener("load", function(){ setTimeout(async function(){
   await call("play_video",{number:"2"},"play n='2'");
   await call("player_open",{},"open@player");
   await call("player_status",{},"status@player");
+  // ---- captions with a player --------------------------------------------
+  var ccl=()=>window.__ccLog||[];
+  check("new player gets cc_load_policy=1 + cc_lang_pref from saved pref", window.__ytOpts && window.__ytOpts.playerVars.cc_load_policy===1 && /^[a-z]+$/.test(window.__ytOpts.playerVars.cc_lang_pref), window.__ytOpts&&window.__ytOpts.playerVars);
+  await new Promise(r=>setTimeout(r,800));
+  check("saved 'on' applied to playing video", ccl().some(x=>x.op==="load"&&x.m==="captions") && ccl().some(x=>x.op==="set"&&x.k==="track"&&x.v&&x.v.languageCode), ccl().slice(-3));
+  cc=await call("captions",{enabled:false},"captions off@player");
+  check("captions off applied", cc.captions==="off" && cc.applied!==false && !cc.note && ccl().some(x=>x.op==="unload"&&x.m==="captions") && localStorage.getItem("rayban-youtube-display:captions:v1")==="off", cc);
+  var cs=await call("player_status",{},"status captions off");
+  check("player_status captions off / no track", cs.captions==="off" && cs.captions_track===null, {captions:cs.captions, track:cs.captions_track});
+  var mark=ccl().length;
+  await call("playback_control",{action:"next"},"pc next (captions off carries)");
+  await new Promise(r=>setTimeout(r,800));
+  var after=ccl().slice(mark), nv=document.querySelector(".video-card.primary");
+  check("off re-applied to next video", after.some(x=>x.op==="unload") && after.some(x=>x.op==="set"&&x.k==="track"&&x.v&&!x.v.languageCode) && !after.some(x=>x.op==="load"), after);
+  cc=await call("captions",{enabled:"on"},"captions 'on'@player");
+  check("captions on applied (prefers manual track)", cc.captions==="on" && ccl().slice(-1)[0].op==="set" && ccl().slice(-1)[0].v.languageCode, ccl().slice(-1)[0]);
+  cs=await call("player_status",{},"status captions on");
+  check("player_status captions on + track", cs.captions==="on" && typeof cs.captions_track==="string", {captions:cs.captions, track:cs.captions_track});
+  await call("playback_control",{action:"previous"},"pc previous");
   await call("playback_control",{action:"toggle"},"pc toggle1");
   await call("playback_control",{action:"toggle"},"pc toggle2");
   await call("playback_control",{action:"skip30"},"pc skip30");

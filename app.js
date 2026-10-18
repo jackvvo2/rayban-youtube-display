@@ -376,6 +376,13 @@
         if (startSeconds > 0) {
           playerVars.start = startSeconds;
         }
+        // Saved captions preference (captions.js): cc_load_policy / cc_lang_pref.
+        if (window.Captions && typeof window.Captions.playerVars === "function") {
+          var ccVars = window.Captions.playerVars();
+          Object.keys(ccVars).forEach(function (key) {
+            playerVars[key] = ccVars[key];
+          });
+        }
         state.player = new window.YT.Player("player-target", {
           width: 584,
           height: 329,
@@ -721,6 +728,9 @@
   function embedUrl(videoId, startSeconds) {
     var src = CONFIG.youtubeBase + "/embed/" + encodeURIComponent(videoId) +
       "?autoplay=1&playsinline=1&rel=0&modestbranding=1";
+    if (window.Captions && typeof window.Captions.embedParams === "function") {
+      src += window.Captions.embedParams();
+    }
     if (startSeconds > 0) {
       src += "&start=" + startSeconds;
     }

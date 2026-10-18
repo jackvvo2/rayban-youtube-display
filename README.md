@@ -14,6 +14,7 @@ The player screen uses a full-width cinema layout. Playback controls are hidden 
 - Service worker caching for offline support
 - Video focus mode: while a video plays, all non-video UI fades to pure black (not drawn on the additive display) after 3s without input; any key wakes it (the first key only wakes), pause/stop/close restores it
 - Glasses battery % in the headers via `navigator.getBattery()` (amber <=20%, red <=10%, bolt when charging; hidden if the API is unavailable). A low-battery toast (<=15%, not charging) shows once per crossing, even during video blackout; `player_status` reports `battery_level`/`charging` (null if unknown)
+- Closed captions on/off via the WebMCP `captions` tool ("turn off captions", "CC on"); the preference is saved in localStorage and applied to new players (`cc_load_policy`), each newly loaded video, and the fallback embed. `player_status` reports `captions` and `captions_track`
 - Adjustable video size (20-100% of full size, centered on black, saved in localStorage) via the WebMCP `video_size` tool, e.g. "make video 70 percent"
 
 ## Playlist
