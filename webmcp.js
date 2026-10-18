@@ -2,7 +2,7 @@
  * Feature-detected: no-op when document.modelContext is absent.
  * Drives the existing UI by clicking [data-action] buttons so app.js and the
  * add-on scripts (persist-playback, chapters, play-toggle-fix) stay the single
- * source of truth. Not yet included in index.html.
+ * source of truth. video_size uses window.VideoFocus (video-focus.js).
  * Docs: https://wearables.developer.meta.com/docs/develop/webapps/agent-tools/
  */
 (function () {
@@ -32,7 +32,13 @@
     window.clearTimeout(flashTimer);
     setBadge("WebMCP: " + name);
     badge.style.color = "#7CFFB2";
-    flashTimer = window.setTimeout(function () { badge.style.color = "#9fb3c8"; showBase(); }, 2500);
+    // is-flash lets the green flash show briefly even during video blackout.
+    if (badge.classList) { badge.classList.add("is-flash"); }
+    flashTimer = window.setTimeout(function () {
+      badge.style.color = "#9fb3c8";
+      if (badge.classList) { badge.classList.remove("is-flash"); }
+      showBase();
+    }, 2500);
   }
   function updateBase() {
     baseText = failed && !okCount ? "WebMCP: error" : "WebMCP: " + okCount + " tools" + (failed ? " (some failed)" : "");
@@ -283,6 +289,31 @@
       await wait(300);
       var now = document.querySelector(".screen.active");
       return { ok: !!now && now.id !== "player-screen", now: { screen: now ? now.id : "" }, next_action: "Confirm in one short sentence. Stop and talk." };
+    }
+  });
+
+  register({
+    name: "video_size",
+    description: "Make video bigger or smaller: set the video size as a percent of full size (20-100), centered on black. E.g. 'make video 70 percent' means percent 70. Saved for next launch.",
+    inputSchema: {
+      type: "object",
+      properties: { percent: { type: "number", minimum: 20, maximum: 100, description: "Video size as a percent of full size, 20 to 100." } },
+      required: ["percent"]
+    },
+    async execute(input, opts) {
+      var signal = opts && opts.signal;
+      var vf = window.VideoFocus;
+      if (!vf || typeof vf.setSize !== "function") { return { error: "unavailable", message: "Video sizing is not available." }; }
+      var raw = input ? input.percent : undefined;
+      var p = typeof raw === "string" ? Number(raw.replace(/%/g, "").trim()) : Number(raw);
+      if (raw === undefined || raw === null || raw === "" || !isFinite(p)) {
+        return { error: "bad_percent", message: "percent must be a number from 20 to 100.", size_percent: vf.getSize(), next_action: "Ask the user for a size, then retry." };
+      }
+      if (signal && signal.aborted) { throw signal.reason || new DOMException("Aborted", "AbortError"); }
+      var applied = vf.setSize(p);
+      var result = { size_percent: applied, next_action: "Confirm in one short sentence. Stop and talk." };
+      if (applied !== Math.round(p)) { result.clamped = true; result.message = "Size limited to 20-100 percent."; }
+      return result;
     }
   });
 

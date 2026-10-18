@@ -1,0 +1,49 @@
+/* Video focus mode: see video-focus.js. Black = not drawn on the glasses. */
+#home-screen,
+.cinema-bar,
+.player-status,
+.controls-drawer,
+.toast,
+#webmcp-status {
+  transition: opacity 600ms ease;
+}
+
+.player-shell {
+  transition: background-color 600ms ease, border-color 600ms ease;
+}
+
+body.video-blackout #home-screen,
+body.video-blackout .cinema-bar,
+body.video-blackout .player-status,
+body.video-blackout .controls-drawer,
+body.video-blackout .toast,
+body.video-blackout #webmcp-status {
+  opacity: 0 !important;
+}
+
+/* WebMCP tool-call flash may show briefly during blackout. */
+body.video-blackout #webmcp-status.is-flash {
+  opacity: 1 !important;
+  transition: none;
+}
+
+body.video-blackout,
+body.video-blackout .app-root,
+body.video-blackout .player-shell,
+.video-scaled .player-shell,
+#player-target {
+  background-color: #000;
+}
+
+body.video-blackout .player-shell,
+.video-scaled .player-shell {
+  border-color: transparent;
+}
+
+/* Video size: percent of the full 584x329 frame, centered in the shell.
+   Real width/height (not transform) so the iframe renders fewer pixels. */
+#player-target,
+#player-target iframe {
+  width: calc(584px * var(--video-scale, 1));
+  height: calc(329px * var(--video-scale, 1));
+}

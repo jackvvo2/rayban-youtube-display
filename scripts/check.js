@@ -131,7 +131,25 @@ var webmcpTools = [];
 })();
 var reserved = ["openUrl", "goBack", "goForward", "reload", "getCurrentUrl", "getPageTitle", "getPageText"];
 var scalar = ["string", "number", "integer", "boolean"];
-assert(webmcpTools.length >= 8, "webmcp.js registers at least 8 tools (got " + webmcpTools.length + ")");
+assert(webmcpTools.length === 9, "webmcp.js registers 9 tools (got " + webmcpTools.length + ")");
+var videoSizeTool = webmcpTools.find(function (t) { return t.name === "video_size"; });
+assert(Boolean(videoSizeTool), "webmcp.js registers video_size");
+if (videoSizeTool) {
+  var vsProps = (videoSizeTool.inputSchema && videoSizeTool.inputSchema.properties) || {};
+  assert(vsProps.percent && vsProps.percent.type === "number", "video_size.percent is a number");
+  assert(vsProps.percent && vsProps.percent.minimum === 20 && vsProps.percent.maximum === 100, "video_size.percent range is 20-100");
+  assert((videoSizeTool.inputSchema.required || []).indexOf("percent") !== -1, "video_size.percent is required");
+}
+assert(/name="description"[^>]*video_size[^>]*percent/.test(html), "meta description gives video_size percent voice guidance");
+var videoFocusSrc = read("video-focus.js");
+var videoFocusCss = read("video-focus.css");
+assert(/<script src="video-focus\.js" defer><\/script>/.test(html), "index.html loads video-focus.js");
+assert(html.indexOf('href="video-focus.css"') !== -1, "index.html loads video-focus.css");
+assert(serviceWorker.indexOf('"./video-focus.js"') !== -1 && serviceWorker.indexOf('"./video-focus.css"') !== -1, "service worker caches video focus files");
+assert(html.indexOf("video-focus.js") < html.indexOf("webmcp.js"), "video-focus.js loads before webmcp.js");
+assert(videoFocusSrc.indexOf("localStorage") !== -1, "video size is persisted in localStorage");
+assert(videoFocusCss.indexOf("body.video-blackout") !== -1 && /opacity:\s*0/.test(videoFocusCss), "blackout fades UI to opacity 0");
+assert(videoFocusCss.indexOf("600ms") !== -1, "blackout fade is ~0.6s");
 var seenPrefixes = {};
 webmcpTools.forEach(function (tool) {
   var name = String(tool.name || "");

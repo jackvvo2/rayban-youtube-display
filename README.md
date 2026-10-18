@@ -12,6 +12,8 @@ The player screen uses a full-width cinema layout. Playback controls are hidden 
 - D-pad navigation (arrow keys)
 - Responsive player controls
 - Service worker caching for offline support
+- Video focus mode: while a video plays, all non-video UI fades to pure black (not drawn on the additive display) after 3s without input; any key wakes it (the first key only wakes), pause/stop/close restores it
+- Adjustable video size (20-100% of full size, centered on black, saved in localStorage) via the WebMCP `video_size` tool, e.g. "make video 70 percent"
 
 ## Playlist
 

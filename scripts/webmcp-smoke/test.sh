@@ -1,6 +1,7 @@
 #!/bin/bash
 # Headless WebMCP smoke test: stub document.modelContext + stub YouTube player,
-# exercises every tool/action and prints results. Needs google-chrome.
+# exercises every tool/action (incl. video_size) and the video blackout mode,
+# prints results and CHECK lines. Needs google-chrome.
 # usage: scripts/webmcp-smoke/test.sh
 set -e
 HERE="$(cd "$(dirname "$0")" && pwd)"; REPO="$(cd "$HERE/../.." && pwd)"
@@ -23,5 +24,9 @@ L=json.loads(html.unescape(m.group(1)))
 print("META",L["meta"]); print("ERRORS",L["errors"]); print("TOASTS",L["toasts"])
 for r in L["results"]: print(json.dumps(r)[:300])
 bad=[t for t in L["toasts"] if "unavailable" in t.lower()]
-sys.exit(1 if L["errors"] or bad or L["meta"]["count"]<8 else 0)
+checks=L.get("checks",[])
+for c in checks: print("CHECK", "PASS" if c["pass"] else "FAIL", c["name"], "" if c["pass"] else json.dumps(c.get("detail"))[:200])
+failed=[c for c in checks if not c["pass"]]
+print("CHECKS %d/%d passed" % (len(checks)-len(failed), len(checks)))
+sys.exit(1 if L["errors"] or bad or L["meta"]["count"]<9 or "video_size" not in L["meta"]["names"] or not checks or failed else 0)
 E
