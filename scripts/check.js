@@ -150,6 +150,21 @@ assert(html.indexOf("video-focus.js") < html.indexOf("webmcp.js"), "video-focus.
 assert(videoFocusSrc.indexOf("localStorage") !== -1, "video size is persisted in localStorage");
 assert(videoFocusCss.indexOf("body.video-blackout") !== -1 && /opacity:\s*0/.test(videoFocusCss), "blackout fades UI to opacity 0");
 assert(videoFocusCss.indexOf("600ms") !== -1, "blackout fade is ~0.6s");
+// --- Battery indicator (battery.js) ---
+var batterySrc = read("battery.js");
+var batteryCss = read("battery.css");
+assert(/<script src="battery\.js" defer><\/script>/.test(html), "index.html loads battery.js");
+assert(html.indexOf('href="battery.css"') !== -1, "index.html loads battery.css");
+assert(html.indexOf("battery.js") < html.indexOf("webmcp.js"), "battery.js loads before webmcp.js");
+assert(serviceWorker.indexOf('"./battery.js"') !== -1 && serviceWorker.indexOf('"./battery.css"') !== -1, "service worker caches battery files");
+var batteryEls = html.match(/<span[^>]*data-battery[^>]*>/g) || [];
+assert(batteryEls.length === 2, "battery indicator present in home and player headers");
+assert(batteryEls.every(function (t) { return / hidden[ >]/.test(t); }), "battery indicator hidden by default (no fake numbers)");
+assert(batterySrc.indexOf("navigator") !== -1 && /typeof nav\.getBattery !== "function"/.test(batterySrc), "battery.js feature-detects navigator.getBattery");
+assert(/levelchange/.test(batterySrc) && /chargingchange/.test(batterySrc), "battery.js listens for levelchange and chargingchange");
+assert(/AMBER = 20/.test(batterySrc) && /RED = 10/.test(batterySrc) && /TOAST_AT = 15/.test(batterySrc), "battery thresholds 20/10/15");
+assert(batteryCss.indexOf("body.video-blackout .toast.toast-urgent") !== -1, "low-battery toast shows during blackout");
+assert(/battery_level/.test(webmcpSrc) && /info\.charging/.test(webmcpSrc), "player_status reports battery_level and charging");
 var seenPrefixes = {};
 webmcpTools.forEach(function (tool) {
   var name = String(tool.name || "");

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="playlist-scroll.css">
     <link rel="stylesheet" href="video-focus.css">
+    <link rel="stylesheet" href="battery.css">
   </head>
   <body>
     <main class="app-root" aria-live="polite">
@@ -20,7 +21,10 @@
             <p class="eyebrow" id="app-version-label">Meta Display</p>
             <h1 id="playlist-title">Playlist</h1>
           </div>
-          <div class="yt-mark" aria-hidden="true">YT</div>
+          <div class="topbar-right">
+            <span class="battery-indicator" data-battery hidden></span>
+            <div class="yt-mark" aria-hidden="true">YT</div>
+          </div>
         </header>
 
         <div class="session-panel">
@@ -47,6 +51,7 @@
         <header class="cinema-bar">
           <button class="focusable icon-button cinema-icon" data-action="back" aria-label="Back">&#8592;</button>
           <div class="cinema-title">
+            <span class="battery-indicator battery-corner" data-battery hidden></span>
             <p class="eyebrow" id="player-eyebrow">Now playing</p>
             <h2 id="video-title">Playlist video</h2>
           </div>
@@ -94,6 +99,7 @@
     <script src="playlist-scroll.js" defer></script>
     <script src="focus-restore.js" defer></script>
     <script src="video-focus.js" defer></script>
+    <script src="battery.js" defer></script>
     <script src="webmcp.js" defer></script>
     <script src="version-label.js" defer></script>
   </body>

@@ -11,6 +11,41 @@ window.addEventListener("load", function(){ setTimeout(async function(){
     return r;
   }
   L.meta={count:T.length, names:T.map(t=>t.name), badge:document.getElementById("webmcp-status").textContent};
+  L.checks=[];
+  function check(name, pass, detail){ L.checks.push({name:name, pass:!!pass, detail:detail}); }
+  var wait=ms=>new Promise(r=>setTimeout(r,ms));
+  var bats=()=>Array.prototype.slice.call(document.querySelectorAll("[data-battery]"));
+  if (L.batteryMode!=="mock") {
+    // Unavailable / throwing / rejecting API: indicator hidden, status null.
+    await wait(300);
+    check("["+L.batteryMode+"] battery indicators hidden", bats().length===2 && bats().every(e=>e.hidden && !e.textContent && e.getClientRects().length===0), bats().map(e=>e.hidden+":"+e.textContent));
+    var st=await f("player_status").execute({}, {signal:new AbortController().signal});
+    check("["+L.batteryMode+"] player_status battery null", st.battery_level===null && st.charging===null, st);
+    var tl=document.getElementById("toast").textContent;
+    check("["+L.batteryMode+"] no battery toast", !/battery/i.test(tl), tl);
+    document.body.setAttribute("data-log", JSON.stringify(L));
+    return;
+  }
+  // Battery mock: 55%, not charging.
+  await wait(100);
+  check("battery shows 55%", bats().length===2 && bats().every(e=>!e.hidden && e.textContent==="55%"), bats().map(e=>e.textContent));
+  check("battery 55% neutral color", bats().every(e=>!e.classList.contains("battery-low")&&!e.classList.contains("battery-critical")), null);
+  check("home battery visible", bats()[0].getClientRects().length>0, null);
+  var bst=await f("player_status").execute({}, {signal:new AbortController().signal});
+  check("player_status battery 55 / not charging", bst.battery_level===55 && bst.charging===false, {battery_level:bst.battery_level, charging:bst.charging});
+  __battery(undefined,true);
+  check("charging bolt shown", bats().every(e=>e.textContent.indexOf("\u26A1")===0 && e.classList.contains("battery-charging")), bats()[0].textContent);
+  __battery(0.20);
+  check("<=20% amber", bats().every(e=>e.classList.contains("battery-low")&&!e.classList.contains("battery-critical")), bats()[0].className);
+  check("amber color", getComputedStyle(bats()[0]).color==="rgb(255, 176, 32)", getComputedStyle(bats()[0]).color);
+  __battery(0.10);
+  check("<=10% red", bats().every(e=>e.classList.contains("battery-critical")&&!e.classList.contains("battery-low")), bats()[0].className);
+  check("red color", getComputedStyle(bats()[0]).color==="rgb(255, 59, 48)", getComputedStyle(bats()[0]).color);
+  check("no low toast while charging", !/battery low/i.test(document.getElementById("toast").textContent), document.getElementById("toast").textContent);
+  bst=await f("player_status").execute({}, {signal:new AbortController().signal});
+  check("player_status battery 10 / charging", bst.battery_level===10 && bst.charging===true, {battery_level:bst.battery_level, charging:bst.charging});
+  __battery(0.55,false);
+  check("battery back to 55% no bolt", bats().every(e=>e.textContent==="55%"), bats()[0].textContent);
   // before player ready / home screen
   await call("player_status",{},"status@home");
   await call("seek_to",{seconds:10},"seek@noplayer");
@@ -50,9 +85,6 @@ window.addEventListener("load", function(){ setTimeout(async function(){
   var ac2=new AbortController(); setTimeout(()=>ac2.abort(),100);
   try { var rb = await f("playlist_refresh").execute({}, {signal:ac2.signal}); L.results.push({step:"refresh mid-abort", r:rb}); } catch(e){ L.results.push({step:"refresh mid-abort", r:{THREW:String(e&&e.name||e)}}); }
   // ---- video_size + video blackout --------------------------------------
-  L.checks=[];
-  function check(name, pass, detail){ L.checks.push({name:name, pass:!!pass, detail:detail}); }
-  var wait=ms=>new Promise(r=>setTimeout(r,ms));
   var body=document.body, pt=()=>document.getElementById("player-target");
   // Headless --dump-dom renders no frames, so CSS transitions never tick;
   // finish them to read each element's settled (end-of-fade) value.
@@ -86,6 +118,25 @@ window.addEventListener("load", function(){ setTimeout(async function(){
   check("video still drawn", op("#player-target")==="1", op("#player-target"));
   check("player shell black in blackout", bg(".player-shell")==="rgb(0, 0, 0)" && bg(".app-root")==="rgb(0, 0, 0)" && bg("body")==="rgb(0, 0, 0)", bg(".player-shell"));
   check("fade duration ~0.6s", getComputedStyle(document.querySelector(".cinema-bar")).transitionDuration==="0.6s", getComputedStyle(document.querySelector(".cinema-bar")).transitionDuration);
+  // Low-battery toast shows during blackout, once per threshold crossing.
+  var lowToasts=()=>L.toasts.filter(t=>/battery low/i.test(t)).length;
+  check("battery indicator faded in blackout", (function(){ var e=document.querySelector(".battery-corner"); return e && getComputedStyle(settled(e.closest(".cinema-bar"))).opacity==="0"; })(), null);
+  __battery(0.15,false);
+  await wait(50);
+  check("low-battery toast at 15% during blackout", lowToasts()===1 && body.classList.contains("video-blackout") && op(".toast")==="1" && /15%/.test(document.getElementById("toast").textContent), {n:lowToasts(), op:op(".toast"), t:document.getElementById("toast").textContent});
+  __battery(0.14); await wait(50);
+  __battery(0.13); await wait(50);
+  check("low-battery toast only once per crossing", lowToasts()===1, lowToasts());
+  await wait(5000);
+  check("low-battery toast hides", op(".toast")==="0" && !document.getElementById("toast").classList.contains("toast-urgent"), op(".toast"));
+  __battery(undefined,true); await wait(50);
+  __battery(undefined,false); await wait(50);
+  check("re-armed after charging: toast again", lowToasts()===2, lowToasts());
+  __battery(0.5); await wait(50);
+  __battery(0.12); await wait(50);
+  check("re-armed after >15%: toast again", lowToasts()===3, lowToasts());
+  __battery(0.55); await wait(5000);
+  check("still blacked out after battery toasts", body.classList.contains("video-blackout"), body.className);
   // WebMCP flash may show during blackout
   vs=await call("video_size",{percent:80},"size 80 during blackout");
   check("badge flash visible during blackout", op("#webmcp-status")==="1" && body.classList.contains("video-blackout"), op("#webmcp-status"));

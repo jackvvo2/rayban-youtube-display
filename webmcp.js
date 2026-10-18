@@ -93,6 +93,10 @@
         info.duration_seconds = Math.round(player.getDuration() || 0);
       } catch (e) { /* fallback iframe has no API */ }
     }
+    // Glasses battery (Battery Status API); null when unavailable.
+    var bat = window.GlassesBattery && typeof window.GlassesBattery.get === "function" ? window.GlassesBattery.get() : null;
+    info.battery_level = bat && typeof bat.battery_level === "number" ? bat.battery_level : null;
+    info.charging = bat && typeof bat.charging === "boolean" ? bat.charging : null;
     if (window.ChapterManager) {
       var ch = window.ChapterManager.getCurrentChapter();
       if (ch) { info.chapter = ch.title; }
@@ -246,7 +250,7 @@
 
   register({
     name: "player_status",
-    description: "Report what is on screen: current video, play state, time, and chapter.",
+    description: "Report what is on screen: current video, play state, time, chapter, and glasses battery_level (percent) and charging (null if unknown).",
     annotations: { readOnlyHint: true, untrustedContentHint: true },
     inputSchema: { type: "object", properties: {} },
     async execute() { return playerInfo(); }

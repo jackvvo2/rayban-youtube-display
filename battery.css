@@ -1,0 +1,55 @@
+/* Glasses battery indicator: see battery.js. */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.battery-indicator {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.battery-indicator[hidden] {
+  display: none !important;
+}
+
+/* Charging is green, but amber/red warnings win (declared later). */
+.battery-indicator.battery-charging {
+  color: var(--ok);
+}
+
+.battery-indicator.battery-low {
+  color: #ffb020;
+}
+
+.battery-indicator.battery-critical {
+  color: #ff3b30;
+}
+
+.cinema-title {
+  position: relative;
+}
+
+.battery-corner {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 12px;
+}
+
+/* Low-battery toast stays visible during video blackout. */
+.toast.toast-urgent {
+  border-color: rgba(255, 59, 48, 0.8);
+}
+
+body.video-blackout .toast.toast-urgent.visible {
+  opacity: 1 !important;
+}
+
+.topbar > div:first-child {
+  min-width: 0;
+}

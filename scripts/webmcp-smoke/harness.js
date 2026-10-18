@@ -4,6 +4,22 @@
   window.addEventListener("error", function(e){ L.errors.push("error: "+e.message); });
   window.addEventListener("unhandledrejection", function(e){ L.errors.push("rejection: "+(e.reason&&e.reason.message||e.reason)); });
   var ce = console.error; console.error = function(){ L.errors.push("console.error: "+Array.prototype.join.call(arguments," ")); ce.apply(console, arguments); };
+  // Battery Status API mock. ?battery=none removes it, =throw throws, =reject rejects.
+  var bmode=(location.search.match(/battery=(\w+)/)||[])[1]||"mock";
+  L.batteryMode=bmode;
+  if (bmode==="none") { delete Navigator.prototype.getBattery; try{ delete navigator.getBattery; }catch(e){} }
+  else {
+    var bat=new EventTarget(); bat.level=0.55; bat.charging=false; bat.chargingTime=Infinity; bat.dischargingTime=7200;
+    window.__battery=function(level,charging){
+      if(typeof level==="number"&&level!==bat.level){ bat.level=level; bat.dispatchEvent(new Event("levelchange")); }
+      if(typeof charging==="boolean"&&charging!==bat.charging){ bat.charging=charging; bat.dispatchEvent(new Event("chargingchange")); }
+    };
+    Object.defineProperty(Navigator.prototype,"getBattery",{configurable:true,writable:true,value:function(){
+      if(bmode==="throw") throw new Error("battery blocked");
+      if(bmode==="reject") return Promise.reject(new DOMException("blocked","NotAllowedError"));
+      return Promise.resolve(bat);
+    }});
+  }
   var tools = window.__tools = [];
   document.modelContext = { registerTool: function(d){ tools.push(d); return Promise.resolve(); } };
   // Faithful-enough YT stub
