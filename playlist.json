@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-10-15T19:37:01.440Z",
+  "generatedAt": "2026-10-20T19:46:52.101Z",
   "videos": [
     {
       "id": "SMPs3XSPgBg",
@@ -658,34 +658,6 @@
       },
       "startAt": 10920,
       "watchUrl": "https://www.youtube.com/embed/zrrf-Vr7le4?start=10920"
-    },
-    {
-      "id": "UEg_aTbs7Iw",
-      "title": "Betrayed by His Brother, He Reincarnates as an SSS-Rank Summoner! | Manhwa Recap",
-      "author": "Daily Manhwas",
-      "published": "2026-10-05T00:13:41+00:00",
-      "updated": "2026-10-05T10:31:35+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/UEg_aTbs7Iw/hqdefault.jpg",
-      "description": "DailyManhwas here, If you want to talk with me about anything (Proposals,Business,Suggestions for videos) contact here: dailymanhwas@gmail.com 00:00 Part 1 1:50:47 New Part! Disclaimer: I do not own the anime, music, ar...",
-      "chapters": [
-        {
-          "start": 0,
-          "timestamp": "0:00",
-          "title": "Part 1"
-        },
-        {
-          "start": 6647,
-          "timestamp": "1:50:47",
-          "title": "New Part!"
-        }
-      ],
-      "lastChapter": {
-        "start": 6647,
-        "timestamp": "1:50:47",
-        "title": "New Part!"
-      },
-      "startAt": 6647,
-      "watchUrl": "https://www.youtube.com/embed/UEg_aTbs7Iw?start=6647"
     }
   ]
 }
