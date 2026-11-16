@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-11-03T21:24:22.761Z",
+  "generatedAt": "2026-11-16T23:56:08.366Z",
   "videos": [
     {
       "id": "SMPs3XSPgBg",
@@ -658,6 +658,44 @@
       },
       "startAt": 10920,
       "watchUrl": "https://www.youtube.com/embed/zrrf-Vr7le4?start=10920"
+    },
+    {
+      "id": "kb8966SBwKw",
+      "title": "(1-74) He Can Learn Any S Rank Martial Techniques in 4 second | High Martial World | #manhwa",
+      "author": "manhwa free",
+      "published": "2026-10-05T09:12:01+00:00",
+      "updated": "2026-11-04T13:53:31+00:00",
+      "thumbnail": "https://i4.ytimg.com/vi/kb8966SBwKw/hqdefault.jpg",
+      "description": "he can learn any s rank martial techniques in 4 second | High Martial World | manhwa recap old part 00:00:00 new part 08:15:00 He can LEARN any SKILL and Make It 100 Times Stronger! | Manhwa Recap name - He Single-Hande...",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "old part"
+        },
+        {
+          "start": 29700,
+          "timestamp": "8:15:00",
+          "title": "new part"
+        }
+      ],
+      "lastChapter": {
+        "start": 29700,
+        "timestamp": "8:15:00",
+        "title": "new part"
+      },
+      "startAt": 29700,
+      "watchUrl": "https://www.youtube.com/embed/kb8966SBwKw?start=29700"
+    },
+    {
+      "id": "7V7wGqOv2fc",
+      "title": "(133) Reborn as a Baby, He Unlocks the Infinite Evolution System From Scratch | Manhwa Recap",
+      "author": "Daily Manhwaas",
+      "published": "2026-10-05T16:57:10+00:00",
+      "updated": "2026-10-09T09:24:14+00:00",
+      "thumbnail": "https://i4.ytimg.com/vi/7V7wGqOv2fc/hqdefault.jpg",
+      "description": "Disclaimer: I do not own the anime, music, artwork or the lyrics. All rights reserved to their respective owners. This video is not meant to infringe any of the copyrights. This is for promote. \"Copyright Disclaimer Und...",
+      "watchUrl": "https://www.youtube.com/embed/7V7wGqOv2fc"
     }
   ]
 }
