@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-11-16T23:56:08.366Z",
+  "generatedAt": "2026-11-17T00:34:33.024Z",
   "videos": [
     {
       "id": "SMPs3XSPgBg",
@@ -46,7 +46,7 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "0:00",
+          "timestamp": "00:00",
           "title": "Part 1"
         },
         {
