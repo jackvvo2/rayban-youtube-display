@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-11-20T22:27:49.002Z",
+  "generatedAt": "2026-11-20T22:52:33.525Z",
   "videos": [
     {
       "id": "SMPs3XSPgBg",
@@ -18,7 +18,7 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00",
+          "timestamp": "0:00",
           "title": "Part 1"
         },
         {
@@ -46,7 +46,7 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00",
+          "timestamp": "0:00",
           "title": "Part 1"
         },
         {
@@ -112,294 +112,294 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00",
-          "title": "Part 2"
+          "timestamp": "0:00",
+          "title": "Part 1"
         },
         {
           "start": 4826,
           "timestamp": "1:20:26",
-          "title": "Part 3"
+          "title": "Part 2"
         },
         {
           "start": 7262,
           "timestamp": "2:01:02",
-          "title": "Part 4"
+          "title": "Part 3"
         },
         {
           "start": 9420,
           "timestamp": "2:37:00",
-          "title": "Part 5"
+          "title": "Part 4"
         },
         {
           "start": 9840,
           "timestamp": "2:44:00",
-          "title": "Part 6"
+          "title": "Part 5"
         },
         {
           "start": 10460,
           "timestamp": "2:54:20",
-          "title": "Part 7"
+          "title": "Part 6"
         },
         {
           "start": 10975,
           "timestamp": "3:02:55",
-          "title": "Part 8"
+          "title": "Part 7"
         },
         {
           "start": 11320,
           "timestamp": "3:08:40",
-          "title": "Part 9"
+          "title": "Part 8"
         },
         {
           "start": 12240,
           "timestamp": "3:24:00",
-          "title": "Part 10"
+          "title": "Part 9"
         },
         {
           "start": 13080,
           "timestamp": "3:38:00",
-          "title": "Part 11"
+          "title": "Part 10"
         },
         {
           "start": 13860,
           "timestamp": "3:51:00",
-          "title": "Part 12"
+          "title": "Part 11"
         },
         {
           "start": 14280,
           "timestamp": "3:58:00",
-          "title": "Part 13"
+          "title": "Part 12"
         },
         {
           "start": 15095,
           "timestamp": "4:11:35",
-          "title": "Part 14"
+          "title": "Part 13"
         },
         {
           "start": 16050,
           "timestamp": "4:27:30",
-          "title": "Part 15"
+          "title": "Part 14"
         },
         {
           "start": 16860,
           "timestamp": "4:41:00",
-          "title": "Part 16"
+          "title": "Part 15"
         },
         {
           "start": 17790,
           "timestamp": "4:56:30",
-          "title": "Part 18"
+          "title": "Part 16"
         },
         {
           "start": 18870,
           "timestamp": "5:14:30",
-          "title": "Part 19"
+          "title": "Part 18"
         },
         {
           "start": 19479,
           "timestamp": "5:24:39",
-          "title": "Part 20"
+          "title": "Part 19"
         },
         {
           "start": 19810,
           "timestamp": "5:30:10",
-          "title": "Part 21"
+          "title": "Part 20"
         },
         {
           "start": 20280,
           "timestamp": "5:38:00",
-          "title": "Part 22"
+          "title": "Part 21"
         },
         {
           "start": 20820,
           "timestamp": "5:47:00",
-          "title": "Part 23"
+          "title": "Part 22"
         },
         {
           "start": 21370,
           "timestamp": "5:56:10",
-          "title": "Part 24"
+          "title": "Part 23"
         },
         {
           "start": 22080,
           "timestamp": "6:08:00",
-          "title": "Part 25"
+          "title": "Part 24"
         },
         {
           "start": 22320,
           "timestamp": "6:12:00",
-          "title": "Part 26"
+          "title": "Part 25"
         },
         {
           "start": 22620,
           "timestamp": "6:17:00",
-          "title": "Part 27"
+          "title": "Part 26"
         },
         {
           "start": 22860,
           "timestamp": "6:21:00",
-          "title": "Part 28"
+          "title": "Part 27"
         },
         {
           "start": 23160,
           "timestamp": "6:26:00",
-          "title": "Part 29"
+          "title": "Part 28"
         },
         {
           "start": 23460,
           "timestamp": "6:31:00",
-          "title": "Part 30"
+          "title": "Part 29"
         },
         {
           "start": 23700,
           "timestamp": "6:35:00",
-          "title": "Part 31"
+          "title": "Part 30"
         },
         {
           "start": 24060,
           "timestamp": "6:41:00",
-          "title": "Part 32"
+          "title": "Part 31"
         },
         {
           "start": 24600,
           "timestamp": "6:50:00",
-          "title": "Part 33"
+          "title": "Part 32"
         },
         {
           "start": 25200,
           "timestamp": "7:00:00",
-          "title": "Part 34"
+          "title": "Part 33"
         },
         {
           "start": 25740,
           "timestamp": "7:09:00",
-          "title": "Part 35"
+          "title": "Part 34"
         },
         {
           "start": 26220,
           "timestamp": "7:17:00",
-          "title": "Part 36"
+          "title": "Part 35"
         },
         {
           "start": 26580,
           "timestamp": "7:23:00",
-          "title": "Part 37"
+          "title": "Part 36"
         },
         {
           "start": 26880,
           "timestamp": "7:28:00",
-          "title": "Part 38"
+          "title": "Part 37"
         },
         {
           "start": 27323,
           "timestamp": "7:35:23",
-          "title": "Cap 77-78"
+          "title": "Part 38"
         },
         {
           "start": 27864,
           "timestamp": "7:44:24",
-          "title": "Cap 79"
+          "title": "Cap 77-78"
         },
         {
           "start": 28474,
           "timestamp": "7:54:34",
-          "title": "Cap 80"
+          "title": "Cap 79"
         },
         {
           "start": 28788,
           "timestamp": "7:59:48",
-          "title": "Cap 81"
+          "title": "Cap 80"
         },
         {
           "start": 29076,
           "timestamp": "8:04:36",
-          "title": "Cap 82-83"
+          "title": "Cap 81"
         },
         {
           "start": 29449,
           "timestamp": "8:10:49",
-          "title": "Cap 84"
+          "title": "Cap 82-83"
         },
         {
           "start": 30163,
           "timestamp": "8:22:43",
-          "title": "Cap 85"
+          "title": "Cap 84"
         },
         {
           "start": 30509,
           "timestamp": "8:28:29",
-          "title": "Cap 86"
+          "title": "Cap 85"
         },
         {
           "start": 30827,
           "timestamp": "8:33:47",
-          "title": "Cap 87"
+          "title": "Cap 86"
         },
         {
           "start": 31120,
           "timestamp": "8:38:40",
-          "title": "Cap 88"
+          "title": "Cap 87"
         },
         {
           "start": 31402,
           "timestamp": "8:43:22",
-          "title": "Cap 89"
+          "title": "Cap 88"
         },
         {
           "start": 31726,
           "timestamp": "8:48:46",
-          "title": "Cap 90"
+          "title": "Cap 89"
         },
         {
           "start": 31996,
           "timestamp": "8:53:16",
-          "title": "Cap 91"
+          "title": "Cap 90"
         },
         {
           "start": 32310,
           "timestamp": "8:58:30",
-          "title": "Cap 92"
+          "title": "Cap 91"
         },
         {
           "start": 32570,
           "timestamp": "9:02:50",
-          "title": "Cap 93"
+          "title": "Cap 92"
         },
         {
           "start": 32907,
           "timestamp": "9:08:27",
-          "title": "Cap 94"
+          "title": "Cap 93"
         },
         {
           "start": 33252,
           "timestamp": "9:14:12",
-          "title": "Cap 95"
+          "title": "Cap 94"
         },
         {
           "start": 33550,
           "timestamp": "9:19:10",
-          "title": "Cap 96-97"
+          "title": "Cap 95"
         },
         {
           "start": 33850,
           "timestamp": "9:24:10",
-          "title": "Cap 98"
+          "title": "Cap 96-97"
         },
         {
           "start": 34433,
           "timestamp": "9:33:53",
-          "title": "Cap 99"
+          "title": "Cap 98"
         },
         {
           "start": 34777,
           "timestamp": "9:39:37",
-          "title": "~ Channel Tags Manhwa, Anime, Recap, Protagonist has demonic powers, Manhwa whe..."
+          "title": "Cap 99"
         }
       ],
       "lastChapter": {
         "start": 34777,
         "timestamp": "9:39:37",
-        "title": "~ Channel Tags Manhwa, Anime, Recap, Protagonist has demonic powers, Manhwa whe..."
+        "title": "Cap 99"
       },
       "startAt": 34777,
       "watchUrl": "https://www.youtube.com/embed/23-fOqLj7Yw?start=34777"
@@ -415,7 +415,7 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00",
+          "timestamp": "0:00",
           "title": "Part 1"
         },
         {
@@ -443,7 +443,7 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00",
+          "timestamp": "0:00",
           "title": "Part 1"
         },
         {
@@ -471,22 +471,47 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00:00",
-          "title": "new part"
+          "timestamp": "0:00",
+          "title": "The final stand"
         },
         {
-          "start": 4344,
-          "timestamp": "01:12:24",
-          "title": "Chapter 2"
+          "start": 137,
+          "timestamp": "2:17",
+          "title": "The ultimate sacrifice"
+        },
+        {
+          "start": 263,
+          "timestamp": "4:23",
+          "title": "A new world"
+        },
+        {
+          "start": 379,
+          "timestamp": "6:19",
+          "title": "Survival at stake"
+        },
+        {
+          "start": 524,
+          "timestamp": "8:44",
+          "title": "Turning the tide"
+        },
+        {
+          "start": 662,
+          "timestamp": "11:02",
+          "title": "A vow of hope"
+        },
+        {
+          "start": 788,
+          "timestamp": "13:08",
+          "title": "Trapped by betrayal"
         }
       ],
       "lastChapter": {
-        "start": 4344,
-        "timestamp": "01:12:24",
-        "title": "Chapter 2"
+        "start": 788,
+        "timestamp": "13:08",
+        "title": "Trapped by betrayal"
       },
-      "startAt": 4344,
-      "watchUrl": "https://www.youtube.com/embed/JirzHLtYsew?start=4344"
+      "startAt": 788,
+      "watchUrl": "https://www.youtube.com/embed/JirzHLtYsew?start=788"
     },
     {
       "id": "JFyHTs6zJno",
@@ -496,7 +521,100 @@
       "updated": "2026-10-09T09:24:36+00:00",
       "thumbnail": "https://i3.ytimg.com/vi/JFyHTs6zJno/hqdefault.jpg",
       "description": "In a world where humanity relies on unique Talents and Class Badges to survive monstrous dungeons, Lin Ye is brutally backstabbed by his own squad. They steal his S-Rank Flame Warrior badge, snap his bones, and force hi...",
-      "watchUrl": "https://www.youtube.com/embed/JFyHTs6zJno"
+      "watchUrl": "https://www.youtube.com/embed/JFyHTs6zJno?start=2614",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "The hero's tragic end"
+        },
+        {
+          "start": 127,
+          "timestamp": "2:07",
+          "title": "Betrayal and rebirth"
+        },
+        {
+          "start": 261,
+          "timestamp": "4:21",
+          "title": "Unlocking a new power"
+        },
+        {
+          "start": 351,
+          "timestamp": "5:51",
+          "title": "Manipulating the team"
+        },
+        {
+          "start": 513,
+          "timestamp": "8:33",
+          "title": "Secret stat farming"
+        },
+        {
+          "start": 718,
+          "timestamp": "11:58",
+          "title": "Building god-like strength"
+        },
+        {
+          "start": 860,
+          "timestamp": "14:20",
+          "title": "The boss battle starts"
+        },
+        {
+          "start": 1031,
+          "timestamp": "17:11",
+          "title": "Turning the tables"
+        },
+        {
+          "start": 1222,
+          "timestamp": "20:22",
+          "title": "Reclaiming his destiny"
+        },
+        {
+          "start": 1361,
+          "timestamp": "22:41",
+          "title": "A new alliance"
+        },
+        {
+          "start": 1551,
+          "timestamp": "25:51",
+          "title": "Speedrunning the record"
+        },
+        {
+          "start": 1735,
+          "timestamp": "28:55",
+          "title": "Clearing the realm"
+        },
+        {
+          "start": 1904,
+          "timestamp": "31:44",
+          "title": "Fame and recruitment"
+        },
+        {
+          "start": 2049,
+          "timestamp": "34:09",
+          "title": "Preparing for the abyss"
+        },
+        {
+          "start": 2223,
+          "timestamp": "37:03",
+          "title": "The trading center clash"
+        },
+        {
+          "start": 2402,
+          "timestamp": "40:02",
+          "title": "The secret weapon"
+        },
+        {
+          "start": 2614,
+          "timestamp": "43:34",
+          "title": "Entering the abyss"
+        }
+      ],
+      "lastChapter": {
+        "start": 2614,
+        "timestamp": "43:34",
+        "title": "Entering the abyss"
+      },
+      "startAt": 2614
     },
     {
       "id": "zrrf-Vr7le4",
@@ -509,34 +627,34 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00:00",
-          "title": "Part 2"
+          "timestamp": "0:00",
+          "title": "Part 1"
         },
         {
           "start": 7125,
-          "timestamp": "01:58:45",
-          "title": "Part 3"
+          "timestamp": "1:58:45",
+          "title": "Part 2"
         },
         {
           "start": 8640,
-          "timestamp": "02:24:00",
-          "title": "Part 4"
+          "timestamp": "2:24:00",
+          "title": "Part 3"
         },
         {
           "start": 9960,
-          "timestamp": "02:46:00",
-          "title": "Part 5"
+          "timestamp": "2:46:00",
+          "title": "Part 4"
         },
         {
           "start": 10920,
-          "timestamp": "03:02:00",
-          "title": "~ Channel Tags Manhwa, Anime, Recap, Protagonist has demonic powers, Manhwa whe..."
+          "timestamp": "3:02:00",
+          "title": "Part 5"
         }
       ],
       "lastChapter": {
         "start": 10920,
-        "timestamp": "03:02:00",
-        "title": "~ Channel Tags Manhwa, Anime, Recap, Protagonist has demonic powers, Manhwa whe..."
+        "timestamp": "3:02:00",
+        "title": "Part 5"
       },
       "startAt": 10920,
       "watchUrl": "https://www.youtube.com/embed/zrrf-Vr7le4?start=10920"
@@ -552,19 +670,19 @@
       "chapters": [
         {
           "start": 0,
-          "timestamp": "00:00:00",
-          "title": "new part"
+          "timestamp": "0:00",
+          "title": "old part"
         },
         {
           "start": 29700,
-          "timestamp": "08:15:00",
-          "title": "He can LEARN any SKILL and Make It 100 Times Stronger! | Manhwa Recap name - He..."
+          "timestamp": "8:15:00",
+          "title": "new part"
         }
       ],
       "lastChapter": {
         "start": 29700,
-        "timestamp": "08:15:00",
-        "title": "He can LEARN any SKILL and Make It 100 Times Stronger! | Manhwa Recap name - He..."
+        "timestamp": "8:15:00",
+        "title": "new part"
       },
       "startAt": 29700,
       "watchUrl": "https://www.youtube.com/embed/kb8966SBwKw?start=29700"
