@@ -5,7 +5,7 @@
   "sourceUrl": "https://youtube.com/playlist?list=PLG4ASdiTQRwQ",
   "feedUrl": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLG4ASdiTQRwQ",
   "published": "2026-09-14T23:15:48+00:00",
-  "generatedAt": "2026-11-21T21:57:27.322Z",
+  "generatedAt": "2026-11-25T00:16:43.787Z",
   "videos": [
     {
       "id": "SMPs3XSPgBg",
@@ -696,6 +696,34 @@
       "thumbnail": "https://i4.ytimg.com/vi/7V7wGqOv2fc/hqdefault.jpg",
       "description": "Disclaimer: I do not own the anime, music, artwork or the lyrics. All rights reserved to their respective owners. This video is not meant to infringe any of the copyrights. This is for promote. \"Copyright Disclaimer Und...",
       "watchUrl": "https://www.youtube.com/embed/7V7wGqOv2fc"
+    },
+    {
+      "id": "h5B0n5sW0PM",
+      "title": "(1-34)HUMILIATED At Magic Academy, He Awakens an SSS-Rank Copy Ability | manhwa recap #manhwa",
+      "author": "manhwa free",
+      "published": "2026-10-05T17:06:35+00:00",
+      "updated": "2026-11-06T04:51:29+00:00",
+      "thumbnail": "https://i1.ytimg.com/vi/h5B0n5sW0PM/hqdefault.jpg",
+      "description": "name - The SS-Rank Freshman of the Super Magic Academy Action , Adventure, Fantasy, Magic, System 00:00:00 previous part 03:08:00 new part A mysterious admission letter with no sender forces Xiao Lin to enroll in a scho...",
+      "chapters": [
+        {
+          "start": 0,
+          "timestamp": "0:00",
+          "title": "previous part"
+        },
+        {
+          "start": 11280,
+          "timestamp": "3:08:00",
+          "title": "new part"
+        }
+      ],
+      "lastChapter": {
+        "start": 11280,
+        "timestamp": "3:08:00",
+        "title": "new part"
+      },
+      "startAt": 11280,
+      "watchUrl": "https://www.youtube.com/embed/h5B0n5sW0PM?start=11280"
     }
   ]
 }
